@@ -695,94 +695,245 @@ footer {
         padding-left: 15px; }
 
 /*# sourceMappingURL=style-login.css.map */
-.contribution-btn{
-  position: relative;
-  width: 100%;
-  height: 100%;
+
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.contribution-btn button{
-  width: 30%;
-  height: 3rem;
-  margin: 1.5rem 35%;
-  background-color: rgb(255, 255, 255);
-  font-weight: bold;
-  border-radius: 0.5rem;
-  transition: all 0.8s;
+.section-description {
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
-.contribution-btn button:hover{
-  background-color: rgba(3, 170, 5, 0.7);
-  font-size: 1.2rem;
+.action-buttons {
+    margin-bottom: 20px;
 }
 
-/* ================================ Contribution CSS =============================== */
-.contribution{
-  position: relative;
-  width: 100%;
-  height: fit-content;
+    .action-buttons button {
+        margin-right: 10px;
+    }
+
+.contributions-list {
+    list-style-type: none;
+    padding: 0;
 }
 
-.contribution .form-contribution{
-  margin: 1.2rem 5%;
-  position: relative;
-  width: 90%;
-  height: 30rem;
-  border: 1px solid #000000;
+.contribution-item {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 20px;
 }
 
-.contribution .form-contribution .add-conditions{
-  width: 100%;
-  height: 6rem;
-  background-color: rgb(255, 255, 255);
-  font-size: 2rem;
-  border: none;
-  border-bottom:  1px solid #000000;
+.contribution-title {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.contribution .term-and-condition{
-  position: relative;
-  width: 100%;
-  font-size: 1.2rem;
-  text-align: center;
-  justify-content: center;
+.contribution-description {
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.contribution .term-and-condition input{
-  width: 0.9rem;
-  height: 0.9rem;
+.contribution-actions {
+    display: flex;
+    align-items: center;
 }
 
-.contribution .btn-contribution{
-  position: relative;
-  width: 100%;
-  height: 100%;
+.view-detail-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
-.contribution .btn-contribution button{
-  border-radius: 0.5rem;
-  width: 15%;
-  height: 2rem;
-  background-color: rgb(255, 255, 255);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.contribution-detail {
+    display: none;
+    margin-top: 10px;
 }
 
-.contribution .btn-contribution .cance{
-  margin-left: 33%;
-  margin-right: 2%;
+    .contribution-detail p {
+        margin: 5px 0;
+    }
+
+/* Media Queries */
+/* Add your media queries for responsive design */
+/* Add this CSS to style the dialog */
+.contribution-detail {
+    display: none;
 }
 
-.contribution .btn-contribution .submit{
-  margin-left: 2%;
+    .contribution-detail.show {
+        display: block;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+.contributions 
+{
+    margin-top: 20px; 
 }
 
-.contribution .btn-contribution .cance:hover{
-  background-color: rgba(222, 5, 36, 1);
-  font-size: 1.2rem;
+/* Button styles */
+.action-buttons {
+    text-align: center;
+    margin-top: 20px;
 }
 
-.contribution .btn-contribution .submit:hover{
-  background-color: rgba(32, 182, 34, 1);
-  font-size: 1.2rem;
+.publish-all-btn,
+.reject-all-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.publish-all-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+    .publish-all-btn:hover {
+        background-color: #45a049;
+    }
+
+.reject-all-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+    .reject-all-btn:hover {
+        background-color: #da190b;
+    }
+/* Checkbox styles */
+.contribution-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+    /* Checked state */
+    .contribution-checkbox:checked {
+        background-color: #2196F3; /* Change background color when checked */
+        border-color: #2196F3; /* Change border color when checked */
+    }
+
+        /* Checked state - Checkmark */
+        .contribution-checkbox:checked::after {
+            content: '\2713'; /* Unicode checkmark character */
+            font-size: 14px;
+            color: white;
+            display: block;
+            text-align: center;
+            line-height: 20px;
+        }
+
+    /* Hover state */
+    .contribution-checkbox:hover {
+        border-color: #007bff; /* Change border color on hover */
+    }
+
+/* C__________________________________________________*/
+}
+
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+.faculty-section {
+    margin-bottom: 40px;
+}
+
+.contributions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .contributions-list li {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+        .contributions-list li h3 {
+            margin-top: 0;
+        }
+
+        .contributions-list li p {
+            margin: 5px 0;
+        }
+
+        /*ssssssssssssssssssssssss*/
+
+section.contributions {
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.contribution {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px
+}
+.SelectedContributions
+{
+    margin-top: 20px;
+}
+
+
+
+.text-white {
+    text-decoration: underline;
+    text-decoration: none;
+}
+
+.contribution-detail-01 {
+    margin: 8px 0px 8px 0px;
+}
+
+a.download-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+    a.download-link:hover {
+        background-color: #0056b3;
+    }
