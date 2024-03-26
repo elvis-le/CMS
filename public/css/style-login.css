@@ -13,7 +13,7 @@ Description: This Template is created for Youtubers
 * {
   margin: 0px;
   padding: 0px;
-  list-style: none; 
+  list-style: none;
 }
 
 body{
@@ -21,22 +21,22 @@ body{
 }
 
 img {
-  max-width: 100%; 
+  max-width: 100%;
 }
 
 a {
   text-decoration: none;
   outline: none;
-  color: #444; 
+  color: #444;
 }
 
 a:hover {
-  color: #444; 
+  color: #444;
 }
 
 ul {
   margin-bottom: 0;
-  padding-left: 0; 
+  padding-left: 0;
 }
 
 ol,ul{
@@ -49,7 +49,7 @@ a:focus,
 input,
 textarea {
   text-decoration: none;
-  outline: none; 
+  outline: none;
 }
 
 .form-02-main{
@@ -63,7 +63,7 @@ textarea {
 }
 
 ._lk_de{
-  
+
   background-repeat:no-repeat;
   background-size:cover;
   padding:40px 0px;
@@ -133,7 +133,7 @@ textarea {
   display:block;
   width:100%;
   padding:15px 0px;
-  text-align:center; 
+  text-align:center;
 }
 
 ._social_04 ol li{

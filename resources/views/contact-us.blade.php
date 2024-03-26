@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>School</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
 
@@ -22,14 +22,14 @@
                    <div class="nav-items">
                        <div class="menu-toggle"></div>
                        <div class="logo">
-                           <img src="../assets/images/logo-Greenwich.png">
+                           <img src="{{ asset('/images/logo-Greenwich.png') }}">
                        </div>
                        <div class="menu-items">
                            <div class="menu">
                                <ul>
-                                   <li><a href="index.blade.php">Home</a></li>
-                                   <li><a href="terms-and-conditions.blade.php">Terms and Conditions</a></li>
-                                   <li><a href="contact-us.blade.php">Contact Us</a></li>
+                                   <li><a href="{{ url('/index') }}">Home</a></li>
+                                   <li><a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                   <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
                                </ul>
                            </div>
                        </div>
@@ -217,10 +217,10 @@
 </body>
 
 
-<script src="../assets/js/jquery-3.2.1.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/owl.carousel.js"></script>
-<script src="../assets/js/script.js"></script>
+<script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('/js/popper.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('/js/script.js') }}"></script>
 </html>

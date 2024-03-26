@@ -6,9 +6,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="../assets/css/bootstrap-login.min.css" rel="stylesheet">
-    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../assets/css/style-login.css" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap-login.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style-login.css') }}" rel="stylesheet">
 
     <title>Educational Bootstrap 5 Login Page Website Tampalte</title>
   </head>
@@ -20,7 +20,7 @@
             <div class="_lk_de">
               <div class="form-03-main">
                 <div class="logo">
-                  <img src="../assets/images/user.png">
+                  <img src="{{ asset('/images/user.png') }}">
                 </div>
                 <div class="form-group">
                   <input type="email" name="email" class="form-control _ge_de_ol" type="text" placeholder="Enter Email" required="" aria-required="true">
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                   <div class="_btn_04">
-                    <a href="index.blade.php">Login</a>
+                    <a href="{{ url('/index') }}">Login</a>
                   </div>
                 </div>
 
@@ -61,5 +61,3 @@
         </div>
       </div>
     </section>
-  </body>
-</html>

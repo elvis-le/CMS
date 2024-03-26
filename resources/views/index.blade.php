@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>School</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 
 <body>
@@ -23,14 +23,14 @@
                     <div class="nav-items">
                         <div class="menu-toggle"></div>
                         <div class="logo">
-                            <img src="../assets/images/logo-Greenwich.png">
+                            <img src="{{ asset('/images/logo-Greenwich.png') }}">
                         </div>
                         <div class="menu-items">
                             <div class="menu">
                                 <ul>
-                                    <li><a href="index.blade.php">Home</a></li>
-                                    <li><a href="terms-and-conditions.blade.php">Terms and Conditions</a></li>
-                                    <li><a href="contact-us.blade.blade.php">Contact Us</a></li>
+                                    <li><a href="{{ url('/index') }}">Home</a></li>
+                                    <li><a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                    <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
     <section id="carouselExampleFade" class="carousel slide carousel-fade slider" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../assets/images/slider/greenwich_1.png" class="d-block" alt="...">
+                <img src="{{ asset('/images/slider/greenwich_1.png') }}" class="d-block" alt="...">
                 <div class="carousel-caption">
                     <h2>Best Education For Diploma</h2>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui perspiciatis, eveniet sequi labore vel itaque adipisci odio necessitatibus voluptatibus saepe, impedit enim unde velit amet rem, suscipit corrupti vero ad.</p>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-            <img src="../assets/images/slider/greenwich_2.png" class="d-block" alt="...">
+            <img src="{{ asset('/images/slider/greenwich_2.png') }}" class="d-block" alt="...">
             <div class="carousel-caption">
                 <h2>Best Education For Diploma</h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui perspiciatis, eveniet sequi labore vel itaque adipisci odio necessitatibus voluptatibus saepe, impedit enim unde velit amet rem, suscipit corrupti vero ad.</p>
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-            <img src="../assets/images/slider/greenwich_3.png" class="d-block" alt="...">
+            <img src="{{ asset('/images/slider/greenwich_3.png') }}" class="d-block" alt="...">
             <div class="carousel-caption">
                 <h2>Best Education For Diploma</h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui perspiciatis, eveniet sequi labore vel itaque adipisci odio necessitatibus voluptatibus saepe, impedit enim unde velit amet rem, suscipit corrupti vero ad.</p>
@@ -164,8 +164,8 @@
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <div class="featured-box">
                           <div class="feature-card">
-                              <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                              <img src="../assets/images/featured/1.jpg">
+                              <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                              <img src="{{ asset('/images/featured/1.jpg') }}">
                           </div>
                           <div class="content">
                             <h3>Learning experience</h3>
@@ -182,8 +182,8 @@
                   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                            <img src="../assets/images/featured/2.jpg">
+                            <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                            <img src="{{ asset('/images/featured/2.jpg') }}">
                         </div>
                         <div class="content">
                           <h3>The sharing of senior peers</h3>
@@ -200,8 +200,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                            <img src="../assets/images/featured/3.jpg">
+                            <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                            <img src="{{ asset('/images/featured/3.jpg') }}">
                         </div>
                         <div class="content">
                           <h3>Communicate at university</h3>
@@ -218,8 +218,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                            <img src="../assets/images/featured/4.jpg">
+                            <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                            <img src="{{ asset('/images/featured/4.jpg') }}">
                         </div>
                         <div class="content">
                           <h3>MBBS</h3>
@@ -236,8 +236,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                            <img src="../assets/images/featured/5.jpg">
+                            <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                            <img src="{{ asset('/images/featured/5.jpg') }}">
                         </div>
                         <div class="content">
                           <h3>MSC</h3>
@@ -254,8 +254,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
-                            <img src="../assets/images/featured/6.jpg">
+                            <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
+                            <img src="{{ asset('/images/featured/6.jpg') }}">
                         </div>
                         <div class="content">
                           <h3>MA</h3>
@@ -339,7 +339,7 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <article class="_lk_bg_sd_we">
-                      <div class="_bv_xs_we" style="background:url(../assets/images/blog/img-01.jpg"></div>
+                      <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-01.jpg') }}"></div>
                       <div class="_xs_we_er">
                         <div class="_he_w">
                           <h3>Summer Course Start From 1st June</h3>
@@ -354,7 +354,7 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <article class="_lk_bg_sd_we">
-                        <div class="_bv_xs_we" style="background:url(../assets/images/blog/img-03.jpg"></div>
+                        <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-03.jpg') }}"></div>
                       <div class="_xs_we_er">
                         <div class="_he_w">
                           <h3>How to communicate with friends</h3>
@@ -438,10 +438,10 @@
 
 </body>
 
-<script src="../assets/js/jquery-3.2.1.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/owl.carousel.js"></script>
-<script src="../assets/js/script.js"></script>
+<script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('/js/popper.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('/js/script.js') }}"></script>
 </html>
