@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->dateTime('submission_date');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->dateTime('last_update_date')->nullable();
 
             // Define foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');

@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('magazine', function (Blueprint $table) {
             $table->id();
-            $table->string('megazine_name');
-            $table->string('megazine_image')->nullable();
-            $table->text('megazine_detail')->nullable();
+            $table->string('magazine_name');
+            $table->string('magazine_image')->nullable();
+            $table->text('magazine_detail')->nullable();
+            $table->unsignedBigInteger('faculty_id')->nullable();
             $table->date('publish_date');
-            $table->datetimes('deadline');
+            $table->dateTime('deadline');
 
             $table->timestamps();
+
+
+            $table->foreign('faculty_id')->references('id')->on('faculties');
         });
     }
 

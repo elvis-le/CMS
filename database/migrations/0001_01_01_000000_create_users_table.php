@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone');
-            $table->unsignedBigInteger('roles_id', 20);
-            $table->integer('years_of_university')->nullable();
+            $table->string('phone')->nullable();
+            $table->unsignedBigInteger('roles_id');
+            $table->enum('years_of_university', [1, 2, 3, 4])->nullable();
             $table->unsignedBigInteger('faculty_id')->nullable();
             $table->rememberToken();
 
+            $table->timestamps();
+
             $table->foreign('roles_id')->references('id')->on('roles');
             $table->foreign('faculty_id')->references('id')->on('faculties');
-
-            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

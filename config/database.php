@@ -42,7 +42,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'LAPTOP-3LCRRAQC'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'magazine_contribution'),
             'username' => env('DB_USERNAME', 'root'),
