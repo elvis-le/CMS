@@ -100,7 +100,49 @@ a:hover {
           @media (max-width: 992px) and (min-width: 768px) {
             .my-nav .nav-items .menu-items .menu ul li {
               padding: 10px 2px; } }
-          .my-nav .nav-items .menu-items .menu ul li a {
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    color: #fff;
+    text-transform: uppercase;
+    transition: 0.5s;
+    padding: 16px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.dropbtn:focus{
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.show-dropdown {display:block;}
+
+.my-nav .nav-items .menu-items .menu ul li a {
             color: #fff;
             padding: 10px;
             text-transform: uppercase;
@@ -129,6 +171,10 @@ a:hover {
 .og-hf .my-nav .menu-items .menu ul li a {
     color: rgb(0,0,0);
   }
+
+.og-hf .my-nav .menu-items .menu ul li .dropdown .dropbtn {
+    color: rgb(0,0,0);
+}
 
 .menu-toggle {
   display: none;

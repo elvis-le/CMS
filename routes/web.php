@@ -1,60 +1,56 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\MarketingCoordinatorController;
+use App\Http\Controllers\MarketingManagerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('login');
-});
-
-Route::get('/index', function () {
-    return view('index');
+    return view('welcome');
 });
 
 Route::get('/terms-and-conditions', function () {
     return view('terms-and-conditions');
 });
 
-Route::get('/contact-us', function () {
-    return view('contact-us');
+Route::prefix('admin')->middleware(['auth', 'administrators'])->group(function (){
+    Route::get('/home', [AdminController::class, 'home']);
 });
 
-Route::get('/magazine-detail', function () {
-    return view('magazine-detail');
+Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
+    Route::get('/index', [StudentController::class, 'home']);
+//    Route::get('/dashboard', function () {
+//        return view('dashboard');
+//    });
 });
 
-Route::get('/contribution', function () {
-    return view('contribution');
+Route::prefix('marketing-manager')->middleware(['auth', 'mm'])->group(function (){
+    Route::get('/home', [MarketingManagerController::class, 'home']);
 });
 
-Route::get('/BusinessAdministration', function () {
-    return view('BusinessAdministration');
+Route::prefix('marketing-coordinator')->middleware(['auth', 'mc'])->group(function (){
+    Route::get('/home', [MarketingCoordinatorController::class, 'home']);
 });
 
-Route::get('/coordinatormkt', function () {
-    return view('coordinatormkt');
+Route::prefix('guest')->middleware(['auth', 'guest'])->group(function (){
+    Route::get('/home', [GuestController::class, 'home']);
 });
 
-Route::get('/GraphicandDigitalDesign', function () {
-    return view('GraphicandDigitalDesign');
+Route::get('/guest/home', function () {
+    return view('guest/home');
+})->middleware(['auth', 'verified'])->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/InformationTechnology', function () {
-    return view('InformationTechnology');
-});
-
-Route::get('/managermkt', function () {
-    return view('managermkt');
-});
-
-//Route::get('/', function () {
-//    return view('login');
-//});
-//
-//Route::get('/', function () {
-//    return view('login');
-//});
-//
-//Route::get('/', function () {
-//    return view('login');
-//});
-
+require __DIR__.'/auth.php';

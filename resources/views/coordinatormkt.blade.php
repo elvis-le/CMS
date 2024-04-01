@@ -25,7 +25,7 @@
                                 <ul>
                                     <li><a href="">Home</a></li>
                                     <li><a href="coordinatormkt.html">Contributions Of Student</a></li>
-                                    <li><a href="contact-us.blade.php">Contact Us</a></li>
+                                    <li><a href="student/contact-us.blade.php">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>

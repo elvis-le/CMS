@@ -31,6 +31,22 @@
                                 <li><a href="{{ url('/index') }}">Home</a></li>
                                 <li><a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a></li>
                                 <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button id="btn-dropdown" class="dropbtn">
+                                            <div>{{ Auth::user()->name }}</div>
+                                        </button>
+                                        <div id="mydropdown" class="dropdown-content">
+                                            <a href="{{ route('profile.edit') }}">Profile</a>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">Log Out</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -450,7 +466,7 @@
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('/js/popper.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
+<script src="{{ asset('/js/dropdown.js') }}"></script>
 </html>

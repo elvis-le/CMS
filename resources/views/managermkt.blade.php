@@ -25,7 +25,7 @@
                                 <ul>
                                     <li><a href="">Home</a></li>
                                     <li><a href="coordinatormkt.blade.php">Contributions Of Student</a></li>
-                                    <li><a href="contact-us.blade.php">Marketing Manager</a></li>
+                                    <li><a href="student/contact-us.blade.php">Marketing Manager</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
+                            <a href="student/magazine-detail.blade.php"><i class="far fa-link"></i></a>
                             <img src="{{ asset('/images/featured/1.jpg') }}">
                         </div>
                         <div class="content">
@@ -99,7 +99,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
+                            <a href="student/magazine-detail.blade.php"><i class="far fa-link"></i></a>
                             <img src="{{ asset('/images/featured/1.jpg') }}">
                         </div>
                         <div class="content">
@@ -117,7 +117,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="featured-box">
                         <div class="feature-card">
-                            <a href="magazine-detail.blade.php"><i class="far fa-link"></i></a>
+                            <a href="student/magazine-detail.blade.php"><i class="far fa-link"></i></a>
                             <img src="{{ asset('/images/featured/1.jpg') }}">
                         </div>
                         <div class="content">
