@@ -29,6 +29,12 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required',
         ]);
 
+        if ($request->has('remember_me')) {
+            config(['session.lifetime' => 60 * 24 * 30]);
+        } else {
+            config(['session.lifetime' => 1]);
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();

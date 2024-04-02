@@ -342,11 +342,10 @@ a:hover {
       display: block;
       position: relative;
       padding: 10px 20px;
-      position: relative;
       border: 1px solid #dddd;
       border-top: 0px;
       border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px; }
+      border-bottom-right-radius: 6px;}
       .bg-02 .featured-box .content h3 {
         font-size: 20px;
         color: #002147; }
@@ -354,7 +353,11 @@ a:hover {
         padding: 10px 0px;
         color: #444444;
         font-size: 14px;
-        font-weight: 500; }
+        font-weight: 500;
+          line-height: 1.7em;
+          overflow: hidden;
+      text-overflow: ellipsis;
+          white-space: nowrap;}
       .bg-02 .featured-box .content ol li {
         display: inline-block;
         padding: 0 6px 0 0;
@@ -371,7 +374,12 @@ a:hover {
       z-index: 3;
       display: flex;
       align-items: center;
-      justify-content: center; }
+      justify-content: center;
+    width: 100%;
+    height: 15rem;}
+.bg-02 .featured-box .feature-card img{
+    object-fit: contain;
+}
       .bg-02 .featured-box .feature-card a {
         position: absolute;
         display: flex;
@@ -894,9 +902,32 @@ footer {
         border-color: #007bff; /* Change border color on hover */
     }
 
-/* C__________________________________________________*/
+/* __________________________________________________*/
 
+.contribution-btn{
+    width: 100%;
+    height: 3rem;
+    color: #1b1e21;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 
+.contribution-btn button{
+    outline: none;
+    margin-left: 40%;
+    width: 20%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.contribution-btn button:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+/* __________________________________________________*/
 
 
 nav ul {
@@ -955,6 +986,7 @@ h2 {
     margin-bottom: 5px;
     margin-top: 5px
 }
+
 .SelectedContributions
 {
     margin-top: 20px;
@@ -983,3 +1015,132 @@ a.download-link {
     a.download-link:hover {
         background-color: #0056b3;
     }
+/* ______________________CONTRIBUTION____________________________*/
+
+.contribution-submit{
+    width: 90%;
+    height: 35rem;
+    margin: 5%;
+    text-align: center;
+    justify-content: center;
+}
+
+.contribution-submit .form-contribution{
+    width: 100%;
+    height: 80%;
+    margin-bottom: 2%;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.contribution-submit .form-contribution .add-contribution{
+    width: 100%;
+    height: 10%;
+    background-color: #FFFFFF;
+    color: #1b1e21;
+    border-radius: 25px;
+    font-size: 2rem;
+    border: 1px solid #000000;
+}
+
+.contribution-submit .form-contribution .list-contribution{
+    position: absolute;
+    width: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    text-align: center;
+    transition: .3s;
+}
+
+.contribution-submit .form-contribution .open-list{
+    transform: scaleY(1);
+    width: 100%;
+}
+
+.contribution-submit .form-contribution .open-list li{
+    background-color: #ffffff;
+    border-bottom: 1px solid #000000;
+    width: 100%;
+    border-radius: 25px;
+}
+
+/*.contribution-submit .form-contribution .file-upload-wrap{*/
+/*    display: inline-flex;*/
+/*    width: 100%;*/
+/*    height: 10%;*/
+/*    border-radius: 25px;*/
+/*    border: 1px solid #000000;*/
+/*}*/
+
+.contribution-submit .form-contribution .file-upload{
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+}
+
+.contribution-submit .form-contribution .file-name{
+    color: #000000;
+    font-size: .9rem;
+    display: inline-flex;
+    width: 95%;
+    height: 10%;
+    position: relative;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.contribution-submit .form-contribution .file-icon{
+    display: inline-flex;
+    width: 4%;
+    height: 10%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.contribution-submit .form-contribution .file-icon img{
+    max-width: 100%;
+    max-height: 80%;
+}
+
+.contribution-submit .btn-contribution{
+    height: 8%;
+    margin-top: 2%;
+}
+
+.contribution-submit .btn-contribution button{
+    outline: none;
+    width: 20%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.contribution-submit .btn-contribution button:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.contribution-submit .btn-contribution .cancel{
+    margin-right: 2.5%;
+}
+
+.contribution-submit .btn-contribution .cancel:hover{
+    background-color: rgba(255,36,36,1);
+}
+
+.contribution-submit .btn-contribution .submit{
+    margin-left: 2.5%;
+}
+
+.contribution-submit .btn-contribution .submit:hover{
+    background-color: rgba(11, 195, 38, 1);
+}
+
+
+
+

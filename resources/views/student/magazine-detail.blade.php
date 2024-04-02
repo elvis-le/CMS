@@ -27,9 +27,9 @@
                        <div class="menu-items">
                            <div class="menu">
                                <ul>
-                                   <li><a href="index.blade.php">Home</a></li>
-                                   <li><a href="terms-and-conditions.blade.php">Terms and Conditions</a></li>
-                                   <li><a href="contact-us.blade.php">Contact Us</a></li>
+                                   <li><a href="{{ url('/student/index') }}">Home</a></li>
+                                   <li><a href="{{ url('/student/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                   <li><a href="{{ url('/student/contact-us') }}">Contact Us</a></li>
                                </ul>
                            </div>
                        </div>
@@ -58,22 +58,23 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="_Ol_er_qw">
-                        <h3>Description</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis voluptatibus neque, assumenda maxime. Eaque libero unde corrupti deleniti maxime ratione doloremque suscipit perferendis aperiam labore debitis atque odit neque, possimus, aspernatur dicta nobis recusandae numquam provident porro, quam suscipit quibusdam. Commodi eum, optio quo.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis voluptatibus neque, assumenda maxime. Eaque libero unde corrupti deleniti maxime ratione doloremque suscipit perferendis aperiam labore debitis atque odit neque, possimus, aspernatur dicta nobis recusandae numquam provident porro, quam suscipit quibusdam. Commodi eum, optio quo.</p>
+                        <h3>{{$magazine->magazine_name}}</h3>
+                        <p>{{$magazine->magazine_detail}}</p>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="_Ol_er_qw yu">
-                        <img src="{{ asset('/images/featured/1.jpg') }}">
+                        <img src="{{ asset($magazine->magazine_image) }}">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <form action="contribution.blade.php" method="#" class="contribution-btn">
-        <button>Contribution</button>
+    <form action="{{ route('contribution') }}" method="post" class="contribution-btn">
+        @csrf
+        <input type="hidden" name="id" value="{{ $magazine->id }}">
+        <button type="submit">Contribution</button>
     </form>
    <footer>
         <div class="container">

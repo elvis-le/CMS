@@ -28,9 +28,9 @@
                     <div class="menu-items">
                         <div class="menu">
                             <ul>
-                                <li><a href="{{ url('/index') }}">Home</a></li>
-                                <li><a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a></li>
-                                <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
+                                <li><a href="{{ url('/student/index') }}">Home</a></li>
+                                <li><a href="{{ url('/student/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                <li><a href="{{ url('/student/contact-us') }}">Contact Us</a></li>
                                 <li>
                                     <div class="dropdown">
                                         <button id="btn-dropdown" class="dropbtn">
@@ -182,114 +182,26 @@
                     <h2>Magazines</h2>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/1.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>Learning experience</h3>
-                        <p>Write about your experience when study in Greenwich</p>
-                        <ol>
-                            <li>16/03/2024</li>
-                            <li>16/05/2024</li>
-                            <li>3 student</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/2.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>The sharing of senior peers</h3>
-                        <p>Talk about your college experience like how to find materials....</p>
-                        <ol>
-                            <li>12/02/2024</li>
-                            <li>28/03/2024</li>
-                            <li>12 student</li>
-                        </ol>
+            @csrf
+            @foreach($magazine as $info)
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="featured-box">
+                        <div class="feature-card">
+                            <a href="{{ url('/student/magazine-detail?id=' . $info->id) }}" ><i class="far fa-link"></i></a>
+                            <img src="{{ asset( $info->magazine_image ) }}">
+                        </div>
+                        <div class="content">
+                            <h3>{{ $info->magazine_name }}</h3>
+                            <p>{{ $info->magazine_detail }}</p>
+                            <ol>
+                                <li>{{ $info->publish_date }}</li>
+                                <li>{{ $info->deadline }}</li>
+                                <li>3 student</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/3.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>Communicate at university</h3>
-                        <p>Talk about how you interact, share experiences....</p>
-                        <ol>
-                            <li>12/02/2024</li>
-                            <li>28/03/2024</li>
-                            <li>12 student</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/4.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>MBBS</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dolor</p>
-                        <ol>
-                            <li>3 Year Course</li>
-                            <li>100 Clasess</li>
-                            <li>10 am - 1 pm</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/5.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>MSC</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dolor</p>
-                        <ol>
-                            <li>3 Year Course</li>
-                            <li>100 Clasess</li>
-                            <li>10 am - 1 pm</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="featured-box">
-                    <div class="feature-card">
-                        <a href="{{ url('/magazine-detail') }}"><i class="far fa-link"></i></a>
-                        <img src="{{ asset('/images/featured/6.jpg') }}">
-                    </div>
-                    <div class="content">
-                        <h3>MA</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa dolor</p>
-                        <ol>
-                            <li>3 Year Course</li>
-                            <li>100 Clasess</li>
-                            <li>10 am - 1 pm</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

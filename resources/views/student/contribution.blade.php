@@ -27,9 +27,9 @@
                        <div class="menu-items">
                            <div class="menu">
                                <ul>
-                                   <li><a href="index.blade.php">Home</a></li>
-                                   <li><a href="terms-and-conditions.blade.php">Terms and Conditions</a></li>
-                                   <li><a href="contact-us.blade.php">Contact Us</a></li>
+                                   <li><a href="{{ url('/student/index') }}">Home</a></li>
+                                   <li><a href="{{ url('/student/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                   <li><a href="{{ url('/student/contact-us') }}">Contact Us</a></li>
                                </ul>
                            </div>
                        </div>
@@ -52,17 +52,24 @@
         </div>
     </section>
 
-    <form action="#" method="#">
-        <div class="contribution">
-            <div class="form-contribution">
-                <button class="add-conditions">+</button>
-            </div>
-            <div class="term-and-condition">
-                <input type="checkbox" id="condition-checkbox">
+    <form action="{{ route('contribution-upload') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="id" value="{{ $magazine->id }}">
+        <div class="contribution-submit">
+            <nav class="form-contribution">
+                <div class="add-contribution">+</div>
+                <div class="list-contribution">
+                    <li class="word-contribution">Word</li>
+                    <li class="image-contribution">Image</li>
+                    <li class="pdf-contribution">PDF</li>
+                </div>
+            </nav>
+            <div class="term-and-condition-check">
+                <input type="checkbox" id="contribution-checkbox">
                 <a href="terms-and-conditions.blade.php">Term and Conditions</a>
             </div>
             <div class="btn-contribution">
-                <button class="cance" id="cance">Cance</button>
+                <button class="cancel" id="cancel">Cancel</button>
                 <button class="submit" id="submit">Submit</button>
             </div>
         </div>

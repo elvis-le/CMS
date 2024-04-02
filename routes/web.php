@@ -12,19 +12,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/terms-and-conditions', function () {
-    return view('terms-and-conditions');
-});
-
 Route::prefix('admin')->middleware(['auth', 'administrators'])->group(function (){
     Route::get('/home', [AdminController::class, 'home']);
 });
 
 Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
     Route::get('/index', [StudentController::class, 'home']);
-//    Route::get('/dashboard', function () {
-//        return view('dashboard');
-//    });
+    Route::get('/magazine-detail', [StudentController::class, 'magazine_detail']);
+    Route::match(['get', 'post'], '/contribution', [StudentController::class, 'contribution'])->name('contribution');
+    Route::post('/contribution-upload', [StudentController::class, 'contribution_upload'])->name('contribution-upload');
+    Route::get('/terms-and-conditions', [StudentController::class, 'terms_and_conditions']);
+    Route::get('/contact-us', [StudentController::class, 'contact_us']);
 });
 
 Route::prefix('marketing-manager')->middleware(['auth', 'mm'])->group(function (){

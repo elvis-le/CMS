@@ -27,9 +27,9 @@
                        <div class="menu-items">
                            <div class="menu">
                                <ul>
-                                   <li><a href="{{ url('/index') }}">Home</a></li>
-                                   <li><a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a></li>
-                                   <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
+                                   <li><a href="{{ url('/student/index') }}">Home</a></li>
+                                   <li><a href="{{ url('/student/terms-and-conditions') }}">Terms and Conditions</a></li>
+                                   <li><a href="{{ url('/student/contact-us') }}">Contact Us</a></li>
                                </ul>
                            </div>
                        </div>

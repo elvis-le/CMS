@@ -7,7 +7,7 @@
       });
 
       $( () => {
-    
+
         //On Scroll Functionality
         $(window).scroll( () => {
           var windowTop = $(window).scrollTop();
@@ -18,7 +18,7 @@
       $('.counting').each(function() {
         var $this = $(this),
         countTo = $this.attr('data-count');
-  
+
       $({ countNum: $this.text()}).animate({
         countNum: countTo
         },
@@ -35,8 +35,8 @@
       //alert('finished');
     }
 
-    });  
-  
+    });
+
   });
 
   $(document).ready(function() {
@@ -62,8 +62,72 @@
       }
     })
   })
+      $(document).ready(function(){
+          $('.add-contribution').click(function() {
+              $('.list-contribution').toggleClass("open-list");
+          });
+      });
 
-document.addEventListener("DOMContentLoaded", function () {
+      $(document).ready(function() {
+          $('.word-contribution').click(function() {
+              var fileType = $(this).data('type');
+              var divElement = $('<div class="file-upload-wrap"></div>')
+              var inputElement = $('<input accept=".docx,.doc" class="file-upload" type="file" name="word">');
+              var spanElement = $('<span class="file-name"></span>');
+              var iconElement = $('<span class="file-icon"><img src="/images/icon-file/word.png"></span>');
+              inputElement.change(function(e) {
+                  const [file] = e.target.files;
+                  if (file) {
+                      spanElement.text(file.name);
+                      spanElement.insertBefore($('.add-contribution'));
+                      iconElement.insertBefore(spanElement);
+                      inputElement.insertAfter(spanElement);
+                  }
+              });
+
+              inputElement.trigger('click');
+          });
+
+          $('.image-contribution').click(function() {
+              var fileType = $(this).data('type');
+              var inputElement = $('<input accept=".jpg,.jpeg,.png,.gif" class="file-upload" type="file" name="image">');
+              var spanElement = $('<span class="file-name"></span>');
+              var iconElement = $('<span class="file-icon"><img src="/images/icon-file/image.png"></span>');
+              inputElement.change(function(e) {
+                  const [file] = e.target.files;
+                  if (file) {
+                      // Only add elements if a file is selected
+                      spanElement.text(file.name);
+                      spanElement.insertBefore($('.add-contribution'));
+                      iconElement.insertBefore(spanElement);
+                      inputElement.insertAfter(spanElement);
+                  }
+              });
+
+              inputElement.trigger('click');
+          });
+
+          $('.pdf-contribution').click(function() {
+              var fileType = $(this).data('type');
+              var inputElement = $('<input accept=".pdf" class="file-upload" type="file" name="pdf">');
+              var spanElement = $('<span class="file-name"></span>');
+              var iconElement = $('<span class="file-icon"><img src="/images/icon-file/pdf.png"></span>');
+              inputElement.change(function(e) {
+                  const [file] = e.target.files;
+                  if (file) {
+                      spanElement.text(file.name);
+                      spanElement.insertBefore($('.add-contribution'));
+                      iconElement.insertBefore(spanElement);
+                      inputElement.insertAfter(spanElement);
+                  }
+              });
+
+              inputElement.trigger('click');
+          });
+      });
+
+
+      document.addEventListener("DOMContentLoaded", function () {
     // Function to handle publishing all contributions
     document.querySelector(".publish-all-btn").addEventListener("click", function () {
         publishAllContributions();
@@ -95,7 +159,7 @@ function updateDate() {
     // Create a new Date object
     var currentDate = new Date();
     var day = currentDate.getDate();
-    var month = currentDate.getMonth() + 1; 
+    var month = currentDate.getMonth() + 1;
     var year = currentDate.getFullYear();
     var formattedDate = year + "-" + (month < 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
     // Update the date display in the HTML element with id="currentDate"
