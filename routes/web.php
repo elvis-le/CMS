@@ -12,8 +12,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->middleware(['auth', 'administrators'])->group(function (){
+Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(function (){
     Route::get('/home', [AdminController::class, 'home']);
+    Route::get('/student', [AdminController::class, 'student_manage']);
+    Route::get('/academic-year', [AdminController::class, 'academic_year_manage']);
+    Route::get('/marketing-coordinator', [AdminController::class, 'marketing_coordinator_manage']);
 });
 
 Route::prefix('student')->middleware(['auth', 'student'])->group(function (){

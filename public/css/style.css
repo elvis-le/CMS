@@ -1141,6 +1141,174 @@ a.download-link {
     background-color: rgba(11, 195, 38, 1);
 }
 
+/* ______________________ADMIN-STUDENT____________________________*/
+.table-user-section{
+    display: flex;
+    width: 100%;
+    height: 40rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: sticky;
+}
 
+.table-user-section .table-user-wrapper{
+    width: 80%;
+    height: 100%;
+}
 
+.table-user-section .table-user-wrapper .table-user-name{
+    width: 20%;
+    margin-bottom: 1.5rem;
+}
 
+.table-user-section .table-user-wrapper .table-user-name .table-name{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table-user-section .table-user-wrapper .table-search-wrap{
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.table-user-section .table-user-wrapper .table-search-wrap svg{
+    position: absolute;
+    left: 1rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.table-user-section .table-user-wrapper .table-search-wrap .search-bar{
+    justify-content: flex-start;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0 10px 0 52px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    background-color: rgba(233, 233, 233, 1);
+}
+
+.table-user-section .table-user-wrapper .table-search-wrap .search-bar:focus, .search-bar:hover {
+    outline: none;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.container-checkbox{
+    position: relative;
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.container-checkbox .year-of-university{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-checkbox .year-of-university .year-of-university-name p{
+    font-weight: bold;
+}
+
+.container-checkbox .year-of-university input{
+    display: inline-flex;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+}
+
+.container-checkbox .year-of-university label{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7px;
+}
+
+.container-checkbox .available-deleted{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    margin-left: 5rem;
+}
+
+.container-checkbox .available-deleted .available-deleted-name p{
+    font-weight: bold;
+}
+
+.container-checkbox .available-deleted input{
+    display: inline-flex;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+}
+
+.container-checkbox .available-deleted label{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7px;
+}
+
+.container-checkbox .create-student{
+    display: inline-flex;
+    width: 60%;
+    justify-content: flex-end;
+}
+
+.container-checkbox .create-student form{
+    display: inline-flex;
+    width: 20%;
+    justify-content: flex-end;
+}
+
+.container-checkbox .create-student .create-student-btn{
+    outline: none;
+    width: 80%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 25px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.container-checkbox .create-student .create-student-btn:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.table-user-wrap{
+    width: 100%;
+    height: 70%;
+    max-height: 25rem;
+    overflow-y: auto;
+}
+
+.table-user-wrap .table-user{
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+}
+
+.table-user-wrap .table-user .table-user-list-head-wrap{
+    height: 3rem;
+}
+
+.table-user-wrap .table-user .table-user-list-body-wrap{
+}
+
+.table-user-wrap .table-user .table-user-list-body{
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    margin-top: 4rem;
+    height: 5.5rem;
+    margin-bottom: 50px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+}

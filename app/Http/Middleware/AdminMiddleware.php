@@ -27,7 +27,7 @@ class AdminMiddleware
                 return redirect('/marketing-coordinator/home')->with('status','You can not access thí page');
             }
             else if (Auth::user()->roles_id == 4){
-                return redirect('/index')->with('status','You can not access thí page');
+                return redirect('/student/index')->with('status','You can not access thí page');
             }
             else{
                 return redirect('/guest/home')->with('status','You can not access thí page');

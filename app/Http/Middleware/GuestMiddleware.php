@@ -30,7 +30,7 @@ class GuestMiddleware
                 return redirect('/administrators/home')->with('status','You can not access thí page');
             }
             else{
-                return redirect('/index')->with('status','You can not access thí page');
+                return redirect('/student/index')->with('status','You can not access thí page');
             }
         }
         else{
