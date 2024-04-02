@@ -92,62 +92,24 @@
                 <thead class="table-user-list-head-wrap">
                 <tr class="table-user-list-head">
                     <th class="table-user-head">Name</th>
-                    <th class="table-user-head">Email</th>
-                    <th class="table-user-head">Phone</th>
-                    <th class="table-user-head">Years</th>
-                    <th class="table-user-head">Status</th>
+                    <th class="table-user-head">Detail</th>
+                    <th class="table-user-head">Faculty</th>
+                    <th class="table-user-head">Publish Date</th>
+                    <th class="table-user-head">Deadline</th>
                     <th class="table-user-head"></th>
                 </tr>
                 </thead>
                 <tbody class="table-user-list-body-wrap">
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
+                @foreach($magazine as $info)
+                    <tr class="table-user-list-body">
+                        <td class="table-user-body">{{ $info->magazine_name }}</td>
+                        <td class="table-user-body">{{ $info->magazine_detail }}</td>
+                        <td class="table-user-body">{{ $info->faculty_id }}</td>
+                        <td class="table-user-body">{{ $info->publish_date }}</td>
+                        <td class="table-user-body">{{ $info->deadline }}</td>
+                        <td class="table-user-body"><a></a></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

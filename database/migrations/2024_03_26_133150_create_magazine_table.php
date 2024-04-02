@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('magazine_image')->nullable();
             $table->text('magazine_detail')->nullable();
             $table->unsignedBigInteger('faculty_id')->nullable();
-            $table->date('publish_date');
-            $table->dateTime('deadline');
+            $table->dateTime('publish_date');
+            $table->date('deadline');
 
             $table->timestamps();
 

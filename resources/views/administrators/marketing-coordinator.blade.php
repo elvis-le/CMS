@@ -26,6 +26,21 @@
                                 {{--                                <li><a href="">Home</a></li>--}}
                                 {{--                                <li><a href="coordinatormkt.blade.php">Contributions Of Student</a></li>--}}
                                 {{--                                <li><a href="student/contact-us.blade.php">Marketing Manager</a></li>--}}
+                                <li>
+                                    <div class="dropdown">
+                                        <button id="btn-dropdown" class="dropbtn">
+                                            <div>{{ Auth::user()->name }}</div>
+                                        </button>
+                                        <div id="mydropdown" class="dropdown-content">
+                                            <a href="{{ route('profile.edit') }}">Profile</a>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">Log Out</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -94,60 +109,20 @@
                     <th class="table-user-head">Name</th>
                     <th class="table-user-head">Email</th>
                     <th class="table-user-head">Phone</th>
-                    <th class="table-user-head">Years</th>
-                    <th class="table-user-head">Status</th>
+                    <th class="table-user-head">Faculty</th>
                     <th class="table-user-head"></th>
                 </tr>
                 </thead>
                 <tbody class="table-user-list-body-wrap">
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
-                <tr class="table-user-list-body">
-                    <td class="table-user-body">dasfdasd</td>
-                    <td class="table-user-body">sdfsadf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">asdfasdf</td>
-                    <td class="table-user-body">sdfasdf</td>
-                    <td class="table-user-body">sadfsadf</td>
-                </tr>
+                @foreach($user as $info)
+                    <tr class="table-user-list-body">
+                        <td class="table-user-body">{{ $info->name }}</td>
+                        <td class="table-user-body">{{ $info->email }}</td>
+                        <td class="table-user-body">{{ $info->phone }}</td>
+                        <td class="table-user-body">{{ $info->faculty_id }}</td>
+                        <td class="table-user-body"><a></a></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -226,5 +201,6 @@
 <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
+<script src="{{ asset('/js/dropdown.js') }}"></script>
 </body>
 </html>
