@@ -71,7 +71,7 @@
             </div>
         </div>
     </section>
-    <form action="{{ route('contribution') }}" method="post" class="contribution-btn">
+    <form action="{{ route('submit-contribution') }}" method="post" class="contribution-btn">
         @csrf
         <input type="hidden" name="id" value="{{ $magazine->id }}">
         <button type="submit">Contribution</button>

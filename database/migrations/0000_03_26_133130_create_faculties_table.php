@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('faculty');
             $table->timestamps();
+            $table->integer('status')->default(0);
         });
     }
 

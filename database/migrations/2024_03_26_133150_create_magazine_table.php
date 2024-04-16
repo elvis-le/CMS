@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('faculty_id')->nullable();
             $table->dateTime('publish_date');
             $table->date('deadline');
+            $table->integer('status')->default(0);
 
             $table->timestamps();
 

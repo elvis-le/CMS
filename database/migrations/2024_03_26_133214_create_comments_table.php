@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('comment');
             $table->dateTime('comment_date');
+            $table->integer('status')->default(0);
 
             // Define foreign key constraints
             $table->foreign('contribution_id')->references('id')->on('contributions');

@@ -1,165 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>School</title>
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Dashboard using HTML, CSS, and JavaScript</title>
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
-<header>
-    <div class="my-nav">
-        <div class="container">
-            <div class="row">
-                <div class="nav-items">
-                    <div class="menu-toggle"></div>
-                    <div class="logo">
-                        <img src="{{ asset('/images/logo-Greenwich.png') }}">
-                    </div>
-                    <div class="menu-items">
-                        <div class="menu">
-                            <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="coordinatormkt.blade.php">Contributions Of Student</a></li>
-                                <li><a href="student/contact-us.blade.php">Marketing Manager</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section class="bg-02-a">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="_head_01">
-                    <h2>Marketing Manager</h2>
-                    <p>List of Course <i class="fas fa-angle-right"></i><a  class="text-white" href="managermkt.blade.php" > Contributions </a><i class="fas fa-angle-right"></i><span>Graphic and Digital Design</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ******************************* -->
-
 <div class="container">
-
-    <div class="SelectedContributions">
-        <h2>Graphic and Digital Design</h2>
-    </div>
-
-    <main>
-        <section class="contributions">
-            <div class="contribution">
-                <h5>Unit 9: Software Development Life Cycle (1631)</h5>
-                <p class="contribution-detail-01">Mandatory Assignment</p>
-                <a href="#" class="download-link">Download</a>
+    <aside>
+        <div class="top">
+            <div class="logo">
+                <img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/icon-logo.webp" />
+                <h2>Greenwich</h2>
             </div>
-
-            <div class="contribution">
-                <h5>Unit 9: Software Development Life Cycle (1631)</h5>
-                <p class="contribution-detail-01">Mandatory Assignment</p>
-                <a href="#" class="download-link">Download</a>
-            </div>
-
-            <div class="contribution">
-                <h5>Unit 9: Software Development Life Cycle (1631)</h5>
-                <p class="contribution-detail-01">Mandatory Assignment</p>
-                <a href="#" class="download-link">Download</a>
-            </div>
-
-            <div class="contribution">
-                <h5>Unit 9: Software Development Life Cycle (1631)</h5>
-                <p class="contribution-detail-01">Mandatory Assignment</p>
-                <a href="#" class="download-link">Download</a>
-            </div>
-        </section>
-    </main>
-</div>
-
-
-<!-- ******************************* -->
-
-
-<footer>
-    <!-- Footer content here -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <div class="_kl_de_w">
-                    <h3>Greenwich University</h3>
-                    <p>
-                        ipsum dolor sit amet, Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <div class="_kl_de_w">
-                    <h3>Quick Links</h3>
-                    <ol>
-                        <li><i class="far fa-angle-right"></i>home</li>
-                        <li><i class="far fa-angle-right"></i>About Us</li>
-                        <li><i class="far fa-angle-right"></i>Services</li>
-                        <li><i class="far fa-angle-right"></i>Blog</li>
-                        <li class="last"><i class="far fa-angle-right"></i>Contact Us</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <div class="_kl_de_w">
-                    <h3>Courses</h3>
-                    <ol>
-                        <li><i class="far fa-angle-right"></i>MBA</li>
-                        <li><i class="far fa-angle-right"></i>ME</li>
-                        <li><i class="far fa-angle-right"></i>BE</li>
-                        <li><i class="far fa-angle-right"></i>MBBS</li>
-                        <li class="last"><i class="far fa-angle-right"></i>MA</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <div class="_kl_de_w">
-                    <h3>Contact Us</h3>
-                    <form class="my-form">
-                        <div class="form-group">
-                            <input class="form-control" type="emal" name="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="3" placeholder="Message" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <a href="#">Submit</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="copy-right">
-                    <p>© 2020 All Rights Reserved by<a href="">Greenwich University</a></p>
-                </div>
+            <div class="close" id="close-btn">
+                <span class="material-icons">close</span>
             </div>
         </div>
-    </div>
-</footer>
+        <div class="sidebar">
+            <a href="{{ route('admin.home') }}" class="active">
+                <span class="material-icons" >grid_view</span>
+                <h3>Magazine</h3>
+            </a>
+{{--            <a href="{{ route('admin.student') }}" class="active">--}}
+{{--                <span class="material-icons">person</span>--}}
+{{--                <h3>Student</h3>--}}
+{{--            </a>--}}
+{{--            <a href="{{ route('admin.mc') }}">--}}
+{{--                <span class="material-icons">receipt_long</span>--}}
+{{--                <h3>Marketing Coordinator</h3>--}}
+{{--            </a>--}}
+{{--            <a href="{{ route('admin.academic') }}">--}}
+{{--                <span class="material-icons">insights</span>--}}
+{{--                <h3>Academic year</h3>--}}
+{{--            </a>--}}
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
 
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+
+                    <span class="material-icons">logout</span>
+                    <h3>Log Out</h3>
+                </a>
+            </form>
+        </div>
+    </aside>
+
+    <section class="bg-02">
+        <div class="container-magazine">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading">
+                        <h2>Magazines</h2>
+                    </div>
+                </div>
+                @csrf
+                @foreach($magazine as $info)
+                        <div class="featured-box">
+                            <div class="feature-card">
+                                <a href="{{ url('/marketing-coordinator/contributions?id=' . $info->id) }}" ><i class="far fa-link"></i></a>
+                                <img src="{{ asset( $info->magazine_image ) }}">
+                            </div>
+                            <div class="content">
+                                <h3>{{ $info->magazine_name }}</h3>
+                                <p>{{ $info->magazine_detail }}</p>
+                                <ol>
+                                    <li>{{ $info->publish_date }}</li>
+                                    <li>{{ $info->deadline }}</li>
+                                    <li>3 student</li>
+                                </ol>
+                            </div>
+                        </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+
+</div>
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('/js/popper.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
+<script src="{{ asset('/js/dropdown.js') }}"></script>
+<script src="{{ asset('/js/cancel.js') }}"></script>
 </body>
 </html>

@@ -35,10 +35,17 @@ class AuthenticatedSessionController extends Controller
             config(['session.lifetime' => 1]);
         }
 
+
         $request->authenticate();
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
+        if ($user->email_verified_at === null) {
+            $user->sendEmailVerificationNotification();
+            return redirect(route('verification.notice'));
+        } else {
         if (Auth::user()->roles_id == 1){
             return redirect('/marketing-manager/home')->with('status', 'MM Login successful');
         }
@@ -46,7 +53,7 @@ class AuthenticatedSessionController extends Controller
             return redirect('/marketing-coordinator/home')->with('status', 'MC Login successful');
         }
         else if (Auth::user()->roles_id == 3){
-            return redirect('/admin/home')->with('status', 'Admin Login successful');
+            return redirect('/administrators/home')->with('status', 'Admin Login successful');
         }
         else if (Auth::user()->roles_id == 4){
             return redirect('/student/index')->with('status', 'User Login successful');
@@ -56,6 +63,8 @@ class AuthenticatedSessionController extends Controller
         }
         else{
             return redirect('/')->with('status', 'Login successful');
+        }
+
         }
     }
 

@@ -37,11 +37,11 @@
                                             <div>{{ Auth::user()->name }}</div>
                                         </button>
                                         <div id="mydropdown" class="dropdown-content">
-                                            <a href="{{ route('profile.edit') }}">Profile</a>
+                                            <a href="{{ route('profile.edit') }}" style="color: #1b1e21">Profile</a>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                this.closest('form').submit();">Log Out</a>
+                                                this.closest('form').submit();"  style="color: #1b1e21">Log Out</a>
                                             </form>
                                         </div>
                                     </div>
@@ -206,106 +206,106 @@
     </div>
 </section>
 
-<section class="bg-03">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                <div class="_lk_bg_cd">
-                    <i class="fal fa-history"></i>
-                    <div class="counting" data-count="967">100</div>
-                    <h5>Megazines</h5>
-                </div>
-            </div>
+{{--<section class="bg-03">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">--}}
+{{--                <div class="_lk_bg_cd">--}}
+{{--                    <i class="fal fa-history"></i>--}}
+{{--                    <div class="counting" data-count="967">100</div>--}}
+{{--                    <h5>Megazines</h5>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                <div class="_lk_bg_cd">
-                    <i class="fal fa-graduation-cap"></i>
-                    <div class="counting" data-count="967">100</div>
-                    <h5>Student Contributions</h5>
-                </div>
-            </div>
+{{--            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">--}}
+{{--                <div class="_lk_bg_cd">--}}
+{{--                    <i class="fal fa-graduation-cap"></i>--}}
+{{--                    <div class="counting" data-count="967">100</div>--}}
+{{--                    <h5>Student Contributions</h5>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                <div class="_lk_bg_cd">
-                    <i class="fal fa-globe"></i>
-                    <div class="counting" data-count="967">100</div>
-                    <h5>Number of Students</h5>
-                </div>
-            </div>
+{{--            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">--}}
+{{--                <div class="_lk_bg_cd">--}}
+{{--                    <i class="fal fa-globe"></i>--}}
+{{--                    <div class="counting" data-count="967">100</div>--}}
+{{--                    <h5>Number of Students</h5>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                <div class="_lk_bg_cd">
-                    <i class="fal fa-registered"></i>
-                    <div class="counting" data-count="967">100</div>
-                    <h5>The magazine is complete</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">--}}
+{{--                <div class="_lk_bg_cd">--}}
+{{--                    <i class="fal fa-registered"></i>--}}
+{{--                    <div class="counting" data-count="967">100</div>--}}
+{{--                    <h5>The magazine is complete</h5>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
-<!-- ====================== Blog Section started====================== -->
+{{--<!-- ====================== Blog Section started====================== -->--}}
 
-<section class="bg-04">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="heading">
-                    <h2>Student Contributions</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <article class="_lk_bg_sd_we">
-                    <div class="_bv_xs_we"></div>
-                    <div class="_xs_we_er">
-                        <div class="_he_w">
-                            <h3>Easy English Learning Way</h3>
-                            <ol>
-                                <li><span>by</span> Quoc Khanh<span class="_mn_cd_xs">17/03/2024</span></li>
-                            </ol>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
+{{--<section class="bg-04">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-12">--}}
+{{--                <div class="heading">--}}
+{{--                    <h2>Student Contributions</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">--}}
+{{--                <article class="_lk_bg_sd_we">--}}
+{{--                    <div class="_bv_xs_we"></div>--}}
+{{--                    <div class="_xs_we_er">--}}
+{{--                        <div class="_he_w">--}}
+{{--                            <h3>Easy English Learning Way</h3>--}}
+{{--                            <ol>--}}
+{{--                                <li><span>by</span> Quoc Khanh<span class="_mn_cd_xs">17/03/2024</span></li>--}}
+{{--                            </ol>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt--}}
+{{--                                ut labore.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </article>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <article class="_lk_bg_sd_we">
-                    <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-01.jpg') }}"></div>
-                    <div class="_xs_we_er">
-                        <div class="_he_w">
-                            <h3>Summer Course Start From 1st June</h3>
-                            <ol>
-                                <li><span>by</span> Thien An<span class="_mn_cd_xs">20/03/2034</span></li>
-                            </ol>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
+{{--            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">--}}
+{{--                <article class="_lk_bg_sd_we">--}}
+{{--                    <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-01.jpg') }}"></div>--}}
+{{--                    <div class="_xs_we_er">--}}
+{{--                        <div class="_he_w">--}}
+{{--                            <h3>Summer Course Start From 1st June</h3>--}}
+{{--                            <ol>--}}
+{{--                                <li><span>by</span> Thien An<span class="_mn_cd_xs">20/03/2034</span></li>--}}
+{{--                            </ol>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt--}}
+{{--                                ut labore.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </article>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <article class="_lk_bg_sd_we">
-                    <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-03.jpg') }}"></div>
-                    <div class="_xs_we_er">
-                        <div class="_he_w">
-                            <h3>How to communicate with friends</h3>
-                            <ol>
-                                <li><span>by</span> Vinh Phuc<span class="_mn_cd_xs">16/02/2024</span></li>
-                            </ol>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-</section>
+{{--            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">--}}
+{{--                <article class="_lk_bg_sd_we">--}}
+{{--                    <div class="_bv_xs_we" style="background:url({{ asset('/images/blog/img-03.jpg') }}"></div>--}}
+{{--                    <div class="_xs_we_er">--}}
+{{--                        <div class="_he_w">--}}
+{{--                            <h3>How to communicate with friends</h3>--}}
+{{--                            <ol>--}}
+{{--                                <li><span>by</span> Vinh Phuc<span class="_mn_cd_xs">16/02/2024</span></li>--}}
+{{--                            </ol>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt--}}
+{{--                                ut labore.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </article>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
 <!-- ====================== Footer Section started====================== -->
 

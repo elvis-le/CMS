@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('magazine_id');
             $table->string('content');
-            $table->string('image')->nullable();
             $table->dateTime('submission_date');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('condition', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->integer('status')->default(0);
 
             // Define foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');
