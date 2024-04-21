@@ -44,35 +44,37 @@ class StudentController extends Controller
 
     public function submit_contribution(Request $request)
     {
-        $magazine = Magazine::findOrFail($request->id);
+        $academicYears = AcademicYear::findOrFail($request->id);
 
         $currentDate = Carbon::now();
-        $deadline = Carbon::parse($magazine->deadline);
+        $deadline = Carbon::parse($academicYears->deadline);
+        $startDate = Carbon::parse($academicYears->startDate);
 
         $contributions = Contribution::where(["user_id" => Auth::id(), 'status' => 0])->get();
 
         $foundContribution = false;
 
         foreach ($contributions as $contribution) {
-            if ($contribution->magazine_id == $magazine->id) {
+            if ($contribution->academicYear_id == $academicYears->id) {
                 $foundContribution = true;
                 break;
             }
         }
 
         if ($foundContribution) {
-            return view('/student/contribution', [
-                'contributions' => $contributions,
-                'magazine' => $magazine,
-                'currentDate' => $currentDate,
-                'deadline' => $deadline
+            return redirect()->route('st.contribution', [
+                'academicYear_id' => $academicYears->id,
             ]);
         }
+        else{
+            return view('/student/submit-contribution', [
+                'academicYear' => $academicYears,
+                'currentDate' => $currentDate,
+                'startDate' => $startDate,
+                'deadline' => $deadline]);
+        }
 
-        return view('/student/submit-contribution', [
-            'magazine' => $magazine,
-            'currentDate' => $currentDate,
-            'deadline' => $deadline]);
+
     }
 
     public function contribution(Request $request)
