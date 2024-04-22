@@ -169,4 +169,135 @@ class StudentController extends Controller
             'deadline' => $deadline
         ]);
     }
+
+    public function comment(Request $request)
+    {
+        Comment::create([
+            'contribution_id' => $request->contribution_id,
+            'user_id' => Auth::id(),
+            'comment' => $request->comment,
+            'comment_date' => now(),
+        ]);
+        $academicYears = AcademicYear::findOrFail($request->academicYear_id);
+        $currentDate = Carbon::now();
+        $finalDeadline = Carbon::parse($academicYears->finalDeadline);
+
+        $contributions = Contribution::where(['id' => $request->contribution_id,"user_id" => Auth::id(), "academicYear_id" => $request->academicYear_id, 'status' => 0])->get();
+
+        foreach ($contributions as $contribution) {
+            $contribution_id = $contribution->id;
+        }
+        $comments = Comment::where('contribution_id', $contribution_id)->get();
+        $user_group = [];
+        foreach ($comments as $comment) {
+            $userId = $comment->user_id;
+            if (!isset($users[$userId])) {
+                $users[$userId] = [];
+            }
+
+            $user_group[$userId][] = $userId;
+        }
+        $users = User::all();
+
+        return view('/student/contribution-detail', [
+            'contributions' => $contributions,
+            'academicYear' => $academicYears,
+            'currentDate' => $currentDate,
+            'finalDeadline' => $finalDeadline,
+            'comments' => $comments,
+            'user_group' => $user_group,
+            'users' => $users,
+        ]);
+    }
+
+    public function profile()
+    {
+        $user = User::where(['id' => Auth::id(), 'status' => 0])->first();
+        $faculty = Faculty::where('id', $user->faculty_id)->first();
+        return view('/student/profile', [
+            'user' => $user,
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function profile_save(Request $request)
+    {
+        $user = User::where(['id'=> Auth::id()])->first();
+        $supabaseUrl = env('SUPABASE_URL');
+        $apiKey = env('SUPABASE_KEY');
+        $bucketName = env('SUPABASE_BUCKET');
+
+        if($request->old_password != null || $request->new_password != null ){
+
+            $validator = Validator::make($request->all(), [
+                'old_password' => ['required'],
+                'new_password' => ['required', Rules\Password::defaults()],
+                'confirm_new_password' => ['required', 'same:new_password'],
+            ]);
+            if ($validator->passes()) {
+                if (!Hash::check($request->old_password, $user->password)){
+                    return redirect()->route('student.profile')->with('error', 'Incorrect password.');
+                }
+                if (Hash::check($request->old_password, $user->password)) {
+                    if ($request->hasFile('image')) {
+                        $imageFile = $request->file('image');
+
+                        $response = Http::attach(
+                            'file',
+                            file_get_contents($imageFile->getRealPath()),
+                            $filepath = $imageFile->getClientOriginalName()
+                        )->withHeaders([
+                            'Authorization' => 'Bearer ' . $apiKey
+                        ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+                        $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+                        if ($response->successful()) {
+                            $user->password = Hash::make($request->new_password);
+                            $user->name = $request->name;
+                            $user->phone = $request->phone;
+                            $user->image = $url;
+                            $user->save();
+                            return redirect()->route('student.profile')->with('notification', 'Changes successfully.');
+                        }
+                    }
+                    $user->password = Hash::make($request->new_password);
+                    $user->name = $request->name;
+                    $user->phone = $request->phone;
+                    $user->save();
+                    return redirect()->route('student.profile')->with('notification', 'Changes successfully.');
+                }
+
+            } else {
+                $errors = $validator->errors();
+                if ($errors->has('confirm_new_password')) {
+                    return redirect()->route('student.profile')->with('error', 'The new password is not the same.');
+                }
+                return redirect()->route('student.profile')->with('error', 'Please fill in all required fields.');
+            }
+        }
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+
+            $response = Http::attach(
+                'file',
+                file_get_contents($imageFile->getRealPath()),
+                $filepath = $imageFile->getClientOriginalName()
+            )->withHeaders([
+                'Authorization' => 'Bearer ' . $apiKey
+            ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+            $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+            if ($response->successful()) {
+                $user->name = $request->name;
+                $user->phone = $request->phone;
+                $user->image = $url;
+                $user->save();
+                return redirect()->route('student.profile')->with('notification', 'Changes successfully.');
+            }
+        }
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->save();
+        return redirect()->route('student.profile')->with('notification', 'Changes successfully.');
+    }
 }

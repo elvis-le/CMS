@@ -49,6 +49,9 @@ Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
     Route::patch('/contribution-edit', [StudentController::class, 'contribution_edit'])->name('contribution-edit');
     Route::get('/terms-and-conditions', [StudentController::class, 'terms_and_conditions']);
     Route::get('/contact-us', [StudentController::class, 'contact_us']);
+    Route::patch('/comment', [StudentController::class, 'comment'])->name('student.comment');
+    Route::get('/profile', [StudentController::class, 'profile'])->name('student.profile');
+    Route::patch('/profile', [StudentController::class, 'profile_save'])->name('student.profile-save');
 });
 
 Route::prefix('marketing-manager')->middleware(['auth', 'mm'])->group(function (){
