@@ -349,5 +349,60 @@ class AdminController extends Controller
 
         return view('login');
     }
+    public function faculty_manage()
+    {
+        $faculty = Faculty::where('status', 0)->get();
+        return view('/administrators/faculty', [
+            'faculty' => $faculty
+        ]);
+    }
 
+    public function faculty_add()
+    {
+        return view('/administrators/faculty-add', [
+        ]);
+    }
+
+
+    public function faculty_save(Request $request): RedirectResponse
+    {
+
+        $faculty = Faculty::create([
+            'faculty' => $request->faculty,
+            'create_at' => now(),
+        ]);
+
+        return redirect(route('admin.faculty', absolute: false));
+    }
+
+    public function faculty_edit(Request $request)
+    {
+        $faculty = Faculty::where('id', $request->id)->first();
+        return view('/administrators/faculty-edit', [
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function faculty_edit_save(Request $request): RedirectResponse
+    {
+        $faculty = Faculty::find($request->id);
+
+        if (!$faculty) {
+            abort(404);
+        }
+
+        $faculty->faculty = $request->faculty;
+
+        $faculty->save();
+        return redirect(route('admin.faculty', absolute: false));
+    }
+
+    public function faculty_delete(Request $request)
+    {
+        Faculty::where('id', $request->id)->update(["status"=>1]);
+        $faculty = Faculty::where(['roles_id' => 4, 'status' => 0])->get();
+        return view('/administrators/faculty', [
+            'faculty' => $faculty
+        ]);
+    }
 }

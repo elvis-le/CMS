@@ -26,13 +26,19 @@ Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(f
     Route::patch('/academic-year-edit-save', [AdminController::class, 'academic_year_edit_save'])->name('academic.edit-save');
     Route::patch('/academic-year-save', [AdminController::class, 'academic_year_save'])->name('academic.save');
     Route::get('/academic-year-add', [AdminController::class, 'academic_year_add'])->name('academic.add');
-    Route::get('/academic-year-delete', [AdminController::class, 'academic_year_delete'])->name('academic.delete');
+    Route::match(['get', 'post'],'/academic-year-delete', [AdminController::class, 'academic_year_delete'])->name('academic.delete');
     Route::get('/marketing-coordinator', [AdminController::class, 'marketing_coordinator_manage'])->name('admin.mc');
     Route::post('/marketing-coordinator-edit', [AdminController::class, 'marketing_coordinator_edit'])->name('mc.edit');
     Route::patch('/marketing-coordinator-edit-save', [AdminController::class, 'marketing_coordinator_edit_save'])->name('mc.edit-save');
     Route::patch('/marketing-coordinator-save', [AdminController::class, 'marketing_coordinator_save'])->name('mc.save');
     Route::get('/marketing-coordinator-add', [AdminController::class, 'marketing_coordinator_add'])->name('mc.add');
-    Route::get('/marketing-coordinator-delete', [AdminController::class, 'marketing_coordinator_delete'])->name('mc.delete');
+    Route::match(['get', 'post'],'/marketing-coordinator-delete', [AdminController::class, 'marketing_coordinator_delete'])->name('mc.delete');
+    Route::get('/faculty', [AdminController::class, 'faculty_manage'])->name('admin.faculty');
+    Route::post('/faculty-edit', [AdminController::class, 'faculty_edit'])->name('faculty.edit');
+    Route::patch('/faculty-edit-save', [AdminController::class, 'faculty_edit_save'])->name('faculty.edit-save');
+    Route::patch('/faculty-save', [AdminController::class, 'faculty_save'])->name('faculty.save');
+    Route::get('/faculty-add', [AdminController::class, 'faculty_add'])->name('faculty.add');
+    Route::match(['get', 'post'],'/faculty-delete', [AdminController::class, 'faculty_delete'])->name('faculty.delete');
 });
 
 Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
