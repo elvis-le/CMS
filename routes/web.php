@@ -43,13 +43,17 @@ Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(f
 
 Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
     Route::get('/index', [StudentController::class, 'home'])->name('student.index');
-    Route::get('/magazine-detail', [StudentController::class, 'magazine_detail']);
-    Route::match(['get', 'post'], '/submit-contribution', [StudentController::class, 'submit_contribution'])->name('submit-contribution');
+    Route::get('/academicYear-detail', [StudentController::class, 'academicYear_detail']);
+    Route::patch('/comment', [StudentController::class, 'comment'])->name('student.comment');
+    Route::match(['get', 'post'], '/submit-contribution', [StudentController::class, 'submit_contribution'])->name('st.submit-contribution');
+    Route::match(['get', 'post'], '/contribution-detail', [StudentController::class, 'contribution_detail'])->name('st.contribution-detail');
+    Route::match(['get', 'post'], '/contribution-edit', [StudentController::class, 'edit_contribution'])->name('st.edit-contribution');
+    Route::match(['get', 'post'], '/contribution-edit-save', [StudentController::class, 'edit_contribution_save'])->name('st.edit-contribution-save');
+    Route::match(['get', 'post'], '/contribution', [StudentController::class, 'contribution'])->name('st.contribution');
     Route::post('/contribution-upload', [StudentController::class, 'contribution_upload'])->name('contribution-upload');
     Route::patch('/contribution-edit', [StudentController::class, 'contribution_edit'])->name('contribution-edit');
     Route::get('/terms-and-conditions', [StudentController::class, 'terms_and_conditions']);
     Route::get('/contact-us', [StudentController::class, 'contact_us']);
-    Route::patch('/comment', [StudentController::class, 'comment'])->name('student.comment');
     Route::get('/profile', [StudentController::class, 'profile'])->name('student.profile');
     Route::patch('/profile', [StudentController::class, 'profile_save'])->name('student.profile-save');
 });
