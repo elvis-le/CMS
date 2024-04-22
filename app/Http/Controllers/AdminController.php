@@ -119,6 +119,107 @@ class AdminController extends Controller
     }
 
 
+    public function academic_year_add()
+    {
+        $faculty = Faculty::where('status', 0)->get();
+        return view('/administrators/academic-year-add', [
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function academic_year_save(Request $request)
+    {
+
+        $supabaseUrl = env('SUPABASE_URL');
+        $apiKey = env('SUPABASE_KEY');
+        $bucketName = env('SUPABASE_BUCKET');
+
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $filepath = Str::random(10) . '_' . $imageFile->getClientOriginalName();
+            $response = Http::attach(
+                'file',
+                file_get_contents($imageFile->getRealPath()),
+                $filepath
+            )->withHeaders([
+                'Authorization' => 'Bearer ' . $apiKey
+            ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+            $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+            if ($response->successful()) {
+
+                $academicYear = new AcademicYear();
+                $academicYear->name = $request->name;
+                $academicYear->image = $url;
+                $academicYear->detail = $request->detail;
+                $academicYear->faculty_id = $request->faculty;
+                $academicYear->publish_date = now();
+                $academicYear->startDate = $request->startDate;
+                $academicYear->deadline = $request->deadline;
+                $academicYear->finalDeadline = $request->finalDeadline;
+                $academicYear->save();
+            }
+        }
+        $academicYear = AcademicYear::where('status', 0)->get();
+        return view('/administrators/academic-year', [
+            'academicYear' => $academicYear
+        ]);
+    }
+
+    public function academic_year_edit(Request $request)
+    {
+        $academicYear = AcademicYear::where(['id' => $request->id, 'status'=> 0])->first();
+        $faculty = Faculty::where('status', 0)->get();
+        return view('/administrators/academic-year-edit', [
+            'academicYear' => $academicYear,
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function academic_year_edit_save(Request $request): RedirectResponse
+    {
+
+        $supabaseUrl = env('SUPABASE_URL');
+        $apiKey = env('SUPABASE_KEY');
+        $bucketName = env('SUPABASE_BUCKET');
+
+        $filepath = Str::random(10);
+        $academicYear = AcademicYear::find($request->id);
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+
+            $response = Http::attach(
+                'file',
+                file_get_contents($imageFile->getRealPath()),
+                $filepath
+            )->withHeaders([
+                'Authorization' => 'Bearer ' . $apiKey
+            ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+            $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+            if ($response->successful()) {
+                $academicYear->image = $url;
+            }
+        }
+        $academicYear->name = $request->name;
+        $academicYear->detail = $request->detail;
+        $academicYear->faculty_id = $request->faculty;
+        $academicYear->publish_date = now();
+        $academicYear->startDate = $request->startDate;
+        $academicYear->deadline = $request->deadline;
+        $academicYear->finalDeadline = $request->finalDeadline;
+        $academicYear->save();
+        return Redirect::route('admin.academic');
+    }
+
+    public function academic_year_delete(Request $request)
+    {
+        AcademicYear::where('id', $request->id)->update(["status"=>1]);
+        $academicYear = AcademicYear::where('status', 0)->get();
+        return view('/administrators/academic-year', [
+            'academicYear' => $academicYear
+        ]);
+    }
 
     public function marketing_coordinator_manage()
     {
