@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => 'Nguyễn Hữu Hải',
-                'email' => 'hainh@fe.edu.vn',
+                'email' => 'hai123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('HuuHai123@'),
                 'phone' => '0976453542',
@@ -27,9 +27,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Văn Tùng',
-                'email' => 'tungnv@fe.edu.vn',
+                'email' => 'tung123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('VanTung123@'),
+                'password' => Hash::make('Tung123@'),
                 'phone' => '0456235443',
                 'roles_id' => 2,
                 'years_of_university' => null,
@@ -37,9 +37,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Trần Thị Hương',
-                'email' => 'huongtt@fe.edu.vn',
+                'email' => 'huong123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('ThiHuong123@'),
+                'password' => Hash::make('Huong123@'),
                 'phone' => '0945636234',
                 'roles_id' => 2,
                 'years_of_university' => null,
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Lê Văn Đạt',
-                'email' => 'datlv@fe.edu.vn',
+                'email' => 'dat123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('VanDat123@'),
                 'phone' => '0945633234',
@@ -59,9 +59,9 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Nguyễn Thị Mỹ Diên',
-                'email' => 'dienntm@fe.edu.vn',
+                'email' => 'dien123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('MyDien123@'),
+                'password' => Hash::make('Dien123@'),
                 'phone' => '0945656234',
                 'roles_id' => 2,
                 'years_of_university' => null,
@@ -70,29 +70,29 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Nguyễn Thị Yến Linh',
-                'email' => 'linhnty@fe.edu.vn',
+                'email' => 'linh123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('YenLinh123@'),
+                'password' => Hash::make('Linh123@'),
                 'phone' => '0945666234',
                 'roles_id' => 2,
                 'years_of_university' => null,
                 'faculty_id' => 5,
             ],
             [
-                'name' => 'Giang Minh Tuấn',
-                'email' => 'tuangm@fe.edu.vn',
+                'name' => 'Lê Nguyễn Quốc Khánh',
+                'email' => 'khanhlnqgcs210497@fpt.edu.vn',
                 'email_verified_at' => now(),
-                'password' => Hash::make('MinhTuan123@'),
+                'password' => Hash::make('Khanh123@'),
                 'phone' => '0759385328',
                 'roles_id' => 3,
                 'years_of_university' => null,
                 'faculty_id' => null,
             ],
             [
-                'name' => 'Lê Nguyễn Quốc Khánh',
-                'email' => 'khanhlnq@fpt.edu.vn',
+                'name' => 'Giang Minh Tuấn',
+                'email' => 'tuan123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('QuocKhanh123@'),
+                'password' => Hash::make('Tuan123@'),
                 'phone' => '0945834523',
                 'roles_id' => 4,
                 'years_of_university' => 3,
@@ -100,9 +100,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Vĩnh Phúc',
-                'email' => 'phucnv@fpt.edu.vn',
+                'email' => 'phuc123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('VinhPhuc123@'),
+                'password' => Hash::make('Phuc123@'),
                 'phone' => '0674573522',
                 'roles_id' => 4,
                 'years_of_university' => 3,
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Đỗ Thiên Ân',
-                'email' => 'andt@fpt.edu.vn',
+                'email' => 'an123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('ThienAn123@'),
                 'phone' => '0667453223',
@@ -120,9 +120,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Phùng Hữu Hoài Tuấn',
-                'email' => 'tuanphh@fpt.edu.vn',
+                'email' => 'tuan123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('HoaiTuan123@'),
+                'password' => Hash::make('Tuan123@'),
                 'phone' => '06674532324',
                 'roles_id' => 4,
                 'years_of_university' => 1,
@@ -130,7 +130,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Thị Ngọc Mai',
-                'email' => 'maintn@fpt.edu.vn',
+                'email' => 'mai123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('NgocMai123@'),
                 'phone' => '0667453236',
@@ -140,9 +140,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Võ Hoàng Phúc',
-                'email' => 'phucvh@fpt.edu.vn',
+                'email' => 'phuc123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('HoangPhuc123@'),
+                'password' => Hash::make('Phuc123@'),
                 'phone' => '0667453223',
                 'roles_id' => 4,
                 'years_of_university' => 3,
@@ -151,7 +151,7 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Nguyễn Phú Quý',
-                'email' => 'quynp@fpt.edu.vn',
+                'email' => 'quy123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('PhuQuy123@'),
                 'phone' => '0667453278',
@@ -161,9 +161,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Trọng Tính',
-                'email' => 'tinhnt@fpt.edu.vn',
+                'email' => 'tinh123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('TrongTinh123@'),
+                'password' => Hash::make('Tinh123@'),
                 'phone' => '0667453289',
                 'roles_id' => 4,
                 'years_of_university' => 1,
@@ -171,9 +171,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Lê Trọng Hiếu',
-                'email' => 'hieult@fpt.edu.vn',
+                'email' => 'hieu123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('TrongHieu123@'),
+                'password' => Hash::make('Hieu123@'),
                 'phone' => '0667453853',
                 'roles_id' => 4,
                 'years_of_university' => 2,
@@ -182,7 +182,7 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Lê Thanh Nhã',
-                'email' => 'nhalt@fpt.edu.vn',
+                'email' => 'nha123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('ThanhNha123@'),
                 'phone' => '0667459426',
@@ -192,7 +192,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Thị Như Ý',
-                'email' => 'yntn@fpt.edu.vn',
+                'email' => 'nhuy123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('NhuY123@'),
                 'phone' => '0667453258',
@@ -202,9 +202,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Trọng Nghĩa',
-                'email' => 'nghiant@fpt.edu.vn',
+                'email' => 'nghia123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('TrongNghia123@'),
+                'password' => Hash::make('Nghia123@'),
                 'phone' => '0667453824',
                 'roles_id' => 4,
                 'years_of_university' => 1,
@@ -213,9 +213,9 @@ class UserSeeder extends Seeder
 
             [
                 'name' => 'Huỳnh Tú Uyên',
-                'email' => 'uyenht@fpt.edu.vn',
+                'email' => 'uyen123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('TuUyen123@'),
+                'password' => Hash::make('Uyen123@'),
                 'phone' => '0667453734',
                 'roles_id' => 4,
                 'years_of_university' => 2,
@@ -223,9 +223,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Lê Trí Thức',
-                'email' => 'thuclt@fpt.edu.vn',
+                'email' => 'thuc123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('TriThuc123@'),
+                'password' => Hash::make('Thuc123@'),
                 'phone' => '0667484532',
                 'roles_id' => 4,
                 'years_of_university' => 3,
@@ -233,9 +233,9 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nguyễn Minh Thuận',
-                'email' => 'thuannm@fpt.edu.vn',
+                'email' => 'thuan123@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('MinhThuan123@'),
+                'password' => Hash::make('Thuan123@'),
                 'phone' => '0667453294',
                 'roles_id' => 4,
                 'years_of_university' => 4,

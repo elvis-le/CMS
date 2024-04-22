@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('magazine', function (Blueprint $table) {
+        Schema::create('academicYear', function (Blueprint $table) {
             $table->id();
-            $table->string('magazine_name');
-            $table->string('magazine_image')->nullable();
-            $table->text('magazine_detail')->nullable();
-            $table->unsignedBigInteger('faculty_id')->nullable();
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->string('detail', 5000)->nullable();
             $table->dateTime('publish_date');
+            $table->date('startDate');
             $table->date('deadline');
+            $table->date('finalDeadline');
             $table->integer('status')->default(0);
+            $table->unsignedBigInteger('faculty_id');
 
             $table->timestamps();
 
