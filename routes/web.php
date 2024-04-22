@@ -65,6 +65,7 @@ Route::prefix('marketing-coordinator')->middleware(['auth', 'mc'])->group(functi
     Route::get('/home', [MarketingCoordinatorController::class, 'home']);
     Route::match(['get', 'post'], '/contributions', [MarketingCoordinatorController::class, 'contributions'])->name('contributions');
     Route::post('contribution-detail', [MarketingCoordinatorController::class, 'contribution_detail'])->name('mc.contribution-detail');
+    Route::patch('/comment', [MarketingCoordinatorController::class, 'comment'])->name('mc.comment');
     Route::post( '/approved', [MarketingCoordinatorController::class, 'approved'])->name('approved');
     Route::post( '/rejected', [MarketingCoordinatorController::class, 'rejected'])->name('rejected');
 });

@@ -57,26 +57,99 @@ class MarketingCoordinatorController extends Controller
     public function approved(Request $request)
     {
         Contribution::where([
-            "user_id" => $request->student_id,
-            "magazine_id" => $request->magazine_id,
+            'id' => $request->contribution_id,
             'status' => 0
         ])->update(['condition' => 'approved']);
-        $contributions = Contribution::where(["user_id" => $request->student_id, "magazine_id" => $request->magazine_id, 'status' => 0])->get();
+        $academicYears = AcademicYear::findOrFail($request->academicYear_id);
+        $contributions = Contribution::where(['id' => $request->contribution_id,"user_id" => $request->student_id, "academicYear_id" => $request->academicYear_id, 'status' => 0])->get();
+
+        foreach ($contributions as $contribution) {
+            $contribution_id = $contribution->id;
+        }
+        $comments = Comment::where('contribution_id', $contribution_id)->get();
+        $user_group = [];
+        foreach ($comments as $comment) {
+            $userId = $comment->user_id;
+            if (!isset($users[$userId])) {
+                $users[$userId] = [];
+            }
+
+            $user_group[$userId][] = $userId;
+        }
+        $users = User::all();
         return view('/marketing-coordinator/contribution-detail', [
             'contributions' => $contributions,
+            'academicYear' => $academicYears,
+            'comments' => $comments,
+            'user_group' => $user_group,
+            'users' => $users,
         ]);
     }
 
     public function rejected(Request $request)
     {
         Contribution::where([
-            "user_id" => $request->student_id,
-            "magazine_id" => $request->magazine_id,
+            'id' => $request->contribution_id,
             'status' => 0
-        ])->update(['condition' => 'rejected']);
-        $contributions = Contribution::where(["user_id" => $request->student_id, "magazine_id" => $request->magazine_id, 'status' => 0])->get();
+        ])->update(['condition' => 'rejected',
+            'allowGuest' => false]);
+        $academicYears = AcademicYear::findOrFail($request->academicYear_id);
+        $contributions = Contribution::where(['id' => $request->contribution_id,"user_id" => $request->student_id, "academicYear_id" => $request->academicYear_id, 'status' => 0])->get();
+
+        foreach ($contributions as $contribution) {
+            $contribution_id = $contribution->id;
+        }
+        $comments = Comment::where('contribution_id', $contribution_id)->get();
+        $user_group = [];
+        foreach ($comments as $comment) {
+            $userId = $comment->user_id;
+            if (!isset($users[$userId])) {
+                $users[$userId] = [];
+            }
+
+            $user_group[$userId][] = $userId;
+        }
+        $users = User::all();
         return view('/marketing-coordinator/contribution-detail', [
             'contributions' => $contributions,
+            'academicYear' => $academicYears,
+            'comments' => $comments,
+            'user_group' => $user_group,
+            'users' => $users,
+        ]);
+    }
+
+    public function comment(Request $request)
+    {
+        Comment::create([
+            'contribution_id' => $request->contribution_id,
+            'user_id' => Auth::id(),
+            'comment' => $request->comment,
+            'comment_date' => now(),
+        ]);
+        $academicYears = AcademicYear::findOrFail($request->academicYear_id);
+        $contributions = Contribution::where(['id' => $request->contribution_id,"user_id" => $request->student_id, "academicYear_id" => $request->academicYear_id, 'status' => 0])->get();
+
+        foreach ($contributions as $contribution) {
+            $contribution_id = $contribution->id;
+        }
+        $comments = Comment::where('contribution_id', $contribution_id)->get();
+        $user_group = [];
+        foreach ($comments as $comment) {
+            $userId = $comment->user_id;
+            if (!isset($users[$userId])) {
+                $users[$userId] = [];
+            }
+
+            $user_group[$userId][] = $userId;
+        }
+        $users = User::all();
+        return view('/marketing-coordinator/contribution-detail', [
+            'contributions' => $contributions,
+            'academicYear' => $academicYears,
+            'comments' => $comments,
+            'user_group' => $user_group,
+            'users' => $users,
         ]);
     }
 
