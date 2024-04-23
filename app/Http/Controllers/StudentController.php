@@ -315,6 +315,16 @@ class StudentController extends Controller
 
         $contribution->save();
 
+
+        $user = User::where('id', Auth::id())->first();
+        $marketing_coordinators = User::where(['roles_id' => 2, 'faculty_id' => $user->faculty_id, 'status' => 0])->get();
+        $academicYear = AcademicYear::where('id', $request->id)->first();
+
+        foreach ($marketing_coordinators as $marketing_coordinator){
+            Mail::to($marketing_coordinator->email)->send(new EmailEditContributonNotification($user, $marketing_coordinator, $academicYear, $contribution));
+        }
+        Mail::to($user->email)->send(new StudentEditContributonNotification($user, $academicYear, $contribution));
+
         $academicYears = AcademicYear::findOrFail($request->id);
         $currentDate = Carbon::now();
         $finalDeadline = Carbon::parse($academicYears->finalDeadline);

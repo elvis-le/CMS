@@ -44,14 +44,14 @@
 
 <p style="color: #1b1e21">Student {{ $studentName }} contributed to the department's {{ $academicYearName }} Academic Year</p>
 
-<p style="color: #1b1e21">You can see it in
-    <form action="{{ route('mc.contribution-detail') }}" method="get" enctype="multipart/form-data">
+    <p style="color: #1b1e21; display: inline-flex">You can see it in
+    <form action="{{ route('mc.contribution-detail') }}" method="get" enctype="multipart/form-data" style="display: inline-flex; width: 50%">
         @csrf
         <input type="hidden" name="academicYear_id" value="{{ $academicYear }}">
         <input type="hidden" name="contribution_id" value="{{ $contributionID }}">
         <input type="hidden" name="student_id" value="{{ $studentID }}">
-        <button>
-            {{ $academicYearName }}
+        <button style="display: inline-flex; border: none; background-color: transparent; color: blue; text-decoration: underline;">
+            <a style=" color: blue;">{{ $academicYearName }}</a>
         </button>
     </form>
     </p>

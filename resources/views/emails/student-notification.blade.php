@@ -44,12 +44,12 @@
 
 <p style="color: #1b1e21">Your contribution to {{ $academicYearName }} Academic Year has edited successfully submitted.</p>
 
-<p style="color: #1b1e21">You can see it in
-    <form action="{{ route('st.contribution') }}" method="get" class="contribution-btn">
+    <p style="color: #1b1e21; display: inline-flex">You can see it in
+    <form action="{{ route('st.contribution') }}" method="get" class="contribution-btn"  style="display: inline-flex; width: 50%">
         @csrf
         <input type="hidden" name="id" value="{{ $academicYearID }}">
-        <button>
-            {{ $academicYearName }}
+        <button style="display: inline-flex; border: none; background-color: transparent; color: blue; text-decoration: underline;">
+            <a style=" color: blue;">{{ $academicYearName }}</a>
         </button>
     </form>
 </p>

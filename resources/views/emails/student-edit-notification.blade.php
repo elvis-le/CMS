@@ -41,9 +41,18 @@
 
 <p style="color: #1b1e21">Dear Mr {{ $studentName }},</p>
 
-<p style="color: #1b1e21">Your contribution to {{ $academicYearName }} Academic Year has been successfully submitted.</p>
+<p style="color: #1b1e21">Your contribution to {{ $academicYearName }} Academic Year has been successfully edit.</p>
 
-<p style="color: #1b1e21">You can see it in <a href="http://localhost:8080/student/contribution?academicYear_id={{ $academicYearID }}">{{ $academicYearName }}</a></p>
+<p style="color: #1b1e21; display: inline-flex">You can see it in
+    <form action="{{ route('st.contribution-detail') }}" method="get" enctype="multipart/form-data" style="display: inline-flex; width: 50%">
+        @csrf
+        <input type="hidden" name="academicYear_id" value="{{ $academicYearID }}">
+        <input type="hidden" name="contribution_id" value="{{ $contributionID }}">
+        <button style="display: inline-flex; border: none; background-color: transparent; color: blue; text-decoration: underline;">
+            <a style=" color: blue;">{{ $academicYearName }}</a>
+        </button>
+    </form>
+</p>
 
 <p style="color: #1b1e21">Best regards</p>
 </section>
