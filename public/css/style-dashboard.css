@@ -55,7 +55,9 @@ body {
   background-color: var(--color-background);
   user-select: none;
   overflow-x: hidden;
-  color: var(--color-dark)
+  color: var(--color-dark);
+    overflow-y: auto;
+    position: relative;
 }
 
 a {
@@ -101,10 +103,11 @@ small {
 
 .container {
   display: grid;
-  width: 96%;
-  margin: 0 auto;
+  width: 98%;
+  margin: 0 0 0 2%;
   gap: 1.8rem;
   grid-template-columns: 14rem auto;
+    position: relative;
 }
 
 .text-muted {
@@ -136,13 +139,15 @@ b {
 }
 
 aside {
-  height: 100vh;
+  height: 98vh;
+    position: sticky;
+    top: 0;
 }
 
 aside .top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 1.4rem;
 }
 
@@ -655,12 +660,11 @@ main .recent-orders a{
 /* ______________________ADMIN-STUDENT____________________________*/
 .table-section{
     display: flex;
-    width: 100%;
+    width: 97%;
     height: 40rem;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 3% 2rem 0;
     position: sticky;
 }
 
@@ -945,12 +949,11 @@ main .recent-orders a{
 /* ______________________ADMIN-ADD____________________________*/
 
 .form-i-main{
-    width: 100%;
+    width: 97%;
     height: 40rem;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 3% 2rem 0;
     position: sticky;
 }
 
@@ -1089,6 +1092,7 @@ width: 100%;
     max-height: 50rem;
     overflow-y: auto;
 }
+
 .bg-02 .featured-box {
     position: relative;
     display: inline-block;
@@ -1244,8 +1248,177 @@ width: 30%}
     margin-bottom: .5rem;
     padding-left: .5rem;
     font-size: .9rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* ______________________Change-profile____________________________*/
+
+.profile-form-wrap{
+    width: 100%;
+    margin: 0 2%;
+    height: 80vh;
+    position: relative;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: 25% 75%;
 }
 
+.profile-form-wrap .personal-image-password{
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 15px;
+}
+
+.profile-form-wrap .personal-image-password .personal-image-name{
+    width: 100%;
+    height: 25%;
+}
+
+.profile-form-wrap .personal-image-password .personal-image-name .personal-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.profile-form-wrap .personal-image-password .personal-image-name .personal-image label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.profile-form-wrap .personal-image-password .personal-image-name .personal-image img{
+    width: 30%;
+    height: 80%;
+    border-radius: 50%;
+    margin-bottom: 1.2rem;
+}
+
+.profile-form-wrap .personal-image-password .personal-image-name p{
+    width: 100%;
+    height: 20%;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    margin-left: 5%;
+}
+
+.profile-form-wrap .personal-image-password .change-password{
+    width: 100%;
+    height: 50%;
+    margin-top: 1.2rem;
+    margin-left: 5%;
+}
+
+.profile-form-wrap .personal-image-password .change-password p{
+    font-size: 1.2rem;
+    color: black;
+}
+
+.profile-form-wrap .personal-image-password .change-password input{
+    width: 90%;
+    height: 12%;
+    margin-top: 1.2rem;
+    border-radius: 10px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.profile-form-wrap .personal-information-wrap{
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-head h2{
+    font-size: 1.6rem;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body{
+    margin-top: 1.2rem;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-information{
+    width: 100%;
+    display: flex;
+    padding: 5px 0;
+    flex-direction: column;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-information label{
+    width: 100%;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-information input{
+    width: 100%;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-information input:focus{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-change-btn{
+    width: 100%;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-change-btn button{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    margin-top: 20%;
+}
+
+.profile-form-wrap .personal-information-wrap .personal-information-body .personal-change-btn button:active{
+    transform: scale(0.8);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+
+/* ______________________Chart____________________________*/
+.select-academic-year{
+    width: 100%;
+}
+.list-chart{
+    width: 80%;
+    display: inline-flex;
+}
+
+#barChart {
+    display: inline-flex;
+    width: 45%;
+    height: 40%;
+    margin-right: 5%;
+}
+
+/* ______________________List-page____________________________*/
+.listPage{
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+    width: 100%;
+}
+
+.listPage li{
+    padding: 10px;
+    display: inline-flex;
+    cursor: pointer;
+    margin: 2px;
+    border: 0.5px solid rgba(187,187,187,0.3);
+}
+
+.listPage .active{
+    border: 0.5px solid rgba(0,0,0,0.3);
+}
 
 
 

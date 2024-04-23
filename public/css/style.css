@@ -3,7 +3,10 @@
 body {
   margin: 0px;
   padding: 0px;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;}
 
 * {
   margin: 0px;
@@ -1020,36 +1023,131 @@ a.download-link {
         background-color: #0056b3;
     }
 /* ______________________SUBMIT-CONTRIBUTION____________________________*/
-
-.contribution-submit{
-    width: 90%;
-    height: 35rem;
-    margin: 5%;
-    text-align: center;
-    justify-content: center;
+.contribution-form-wrap{
+    width: 80%;
+    margin: 1.5% 10%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 }
 
-.contribution-submit .form-contribution{
+.contribution-form-wrap .contribution-form-head{
+    display: inline-flex;
     width: 100%;
-    height: 80%;
+    height: 30rem;
+    padding: 1%;
+}
+
+.contribution-form-wrap .contribution-form-head .contribution-form-img{
+    width: 30%;
+    height: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+}
+
+.contribution-form-wrap .contribution-form-head .contribution-form-img label{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.contribution-form-wrap .contribution-form-head .contribution-form-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution{
+    width: 69%;
+    height: 100%;
+    margin-left: 1%;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .title-contribution{
+    width: 100%;
+    height: 20%;
+    border-radius: 15px;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .title-contribution input{
+    width: 100%;
+    height: 100%;
+    text-align:center;
+    font-size: 1.4rem;
+    border-radius: 15px;
+    font-weight: bold;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .title-contribution input:focus{
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .content-contribution{
+    width: 100%;
+    height: 78%;
+    margin-top: 1%;
+    border-radius: 15px;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .content-contribution textarea{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    resize: none;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 1%;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .content-contribution textarea:focus{
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.contribution-form-wrap .contribution-form-head .title-content-contribution .content-contribution textarea::placeholder {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.contribution-form-wrap .contribution-form-body {
+    display: inline-flex;
+    width: 100%;
+    height: 35rem;
+    text-align: center;
+    justify-content: center;
+    padding: 0 1%;
+}
+
+.contribution-form-wrap .contribution-form-body .form-contribution{
+    width: 30%;
+    height: 100%;
     margin-bottom: 2%;
-    border: 1px solid #000000;
-    border-radius: 25px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 15px;
     position: relative;
     cursor: pointer;
 }
 
-.contribution-submit .form-contribution .add-contribution{
+.contribution-form-wrap .contribution-form-body .form-contribution .add-contribution{
     width: 100%;
     height: 10%;
     background-color: #FFFFFF;
     color: #1b1e21;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 2rem;
     border: 1px solid #000000;
 }
 
-.contribution-submit .form-contribution .list-contribution{
+.contribution-form-wrap .contribution-form-body .form-contribution .list-contribution{
     position: absolute;
     width: 100%;
     transform: scaleY(0);
@@ -1058,75 +1156,105 @@ a.download-link {
     transition: .3s;
 }
 
-.contribution-submit .form-contribution .open-list{
+.contribution-form-wrap .contribution-form-body .form-contribution .open-list{
     transform: scaleY(1);
     width: 100%;
 }
 
-.contribution-submit .form-contribution .open-list li{
+.contribution-form-wrap .contribution-form-body .form-contribution .open-list li{
     background-color: #ffffff;
     border-bottom: 1px solid #000000;
     width: 100%;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
-/*.contribution-submit .form-contribution .file-upload-wrap{*/
-/*    display: inline-flex;*/
-/*    width: 100%;*/
-/*    height: 10%;*/
-/*    border-radius: 25px;*/
-/*    border: 1px solid #000000;*/
-/*}*/
+.contribution-form-wrap .contribution-form-body .form-contribution .file-upload-wrap{
+    width: 98%;
+    height: 5%;
+    display: inline-flex;
+    margin-top: 2%;
+}
 
-.contribution-submit .form-contribution .file-upload{
+.contribution-form-wrap .contribution-form-body .form-contribution .file-upload{
+    display: inline-flex;
     width: 0;
     height: 0;
     vertical-align: middle;
 }
 
-.contribution-submit .form-contribution .file-name{
+.contribution-form-wrap .contribution-form-body .form-contribution .file-name{
+    display: inline-flex;
     color: #000000;
     font-size: .9rem;
-    display: inline-flex;
     width: 90%;
-    height: 10%;
+    height: 100%;
     position: relative;
     align-items: center;
     vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.file-icon{
+.contribution-form-wrap .file-icon{
     display: inline-flex;
-    width: 4%;
-    height: 10%;
+    width: 6%;
+    height: 100%;
     align-items: center;
     text-align: center;
     justify-content: center;
     vertical-align: middle;
 }
 
-.file-icon img{
+.contribution-form-wrap .file-icon img{
     max-width: 100%;
     max-height: 80%;
 }
-.contribution-submit .form-contribution .delete-contribution{
+.contribution-form-wrap .contribution-form-body .form-contribution .delete-contribution{
+    display: inline-flex;
     position: relative;
     width: 5%;
-    height: 10%;
+    height: 100%;
     background-color: transparent;
     border: none;
     font-size: 1.2rem;
     text-align: center;
     align-items: center;
     justify-content: center;
+    outline: none;
 }
 
-.contribution-submit .btn-contribution{
-    height: 8%;
+.contribution-form-wrap .contribution-form-body .show-contribution{
+    width: 69%;
+    margin-left: 1%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 15px;
+}
+
+.contribution-form-wrap .contribution-btn-wrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    padding: 0 1%;
+}
+
+.contribution-form-wrap .contribution-btn-wrap p{
+    width: 100%;
+    color: rgba(255,0,0,1);
+}
+
+.contribution-form-wrap .btn-contribution{
+    width: 100%;
+    height: 3rem;
     margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-.contribution-submit .btn-contribution button{
+.contribution-form-wrap .btn-contribution button{
     outline: none;
     width: 20%;
     height: 100%;
@@ -1136,164 +1264,40 @@ a.download-link {
     box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
-.contribution-submit .btn-contribution button:active{
+.contribution-form-wrap .btn-contribution button:active{
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
-.contribution-submit .btn-contribution .cancel{
+.contribution-form-wrap .btn-contribution .cancel{
     margin-right: 2.5%;
 }
 
-.contribution-submit .btn-contribution .cancel:hover{
+.contribution-form-wrap .btn-contribution .cancel:hover{
     background-color: rgba(255,36,36,1);
 }
 
-.contribution-submit .btn-contribution .submit{
+.contribution-form-wrap .btn-contribution .submit{
     margin-left: 2.5%;
 }
 
-.contribution-submit .btn-contribution .submit:hover{
+.contribution-form-wrap .btn-contribution .submit:hover{
     background-color: rgba(11, 195, 38, 1);
 }
 
 /* ______________________CONTRIBUTION____________________________*/
 
 .container-contribution{
-    display: grid;
-    width: 96%;
-    height: 43rem;
-    margin: .6rem auto auto auto;
-    gap: 1.8rem;
-    grid-template-columns: 14rem auto 26rem;
-}
-
-
-.container-contribution .list-file-contribution-wrapper{
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    display: inline-flex;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
     position: relative;
+    overflow-y: auto;
 }
 
-.container-contribution .list-file-contribution-wrapper .list-file-contribution-name h2{
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-top: .9rem;
+.container-contribution form{
+    width: 79%;
+    display: inline-flex;
+    margin-left: 1%;
 }
-.container-contribution .list-file-contribution-wrapper .list-file-contribution-wrap{
-    width: 100%;
-    font-size: .8rem;
-}
-
-
-.container-contribution .list-file-contribution-wrapper .list-file-contribution-wrap a{
-    font-size: .9rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    margin-top: 1rem;
-    display: block;
-    border-radius: 25px;
-    width: calc(100% - 10%);
-    padding: .5rem;
-    margin-left: 5%;
-    color: #000000;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-    transition: .3s all;
-}
-
-.container-contribution .list-file-contribution-wrapper .list-file-contribution-wrap a:hover{
-    transform: scale(1.1);
-    color: rgba(52, 119, 241, 1);
-}
-
-.container-contribution .list-file-contribution-wrapper .list-file-contribution-wrap a:active{
-    transform: scale(1);
-    color: #000000;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn{
-    display: flex;
-    color: var(--color-info-dark);
-    gap: 1rem;
-    align-items: center;
-    position: relative;
-    height: 3.7rem;
-    transition: all 300ms ease;
-    width: 100%;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn:last-child{
-    position: absolute;
-    bottom: 2rem;
-    width: 100%;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn button{
-    outline: none;
-    border: none;
-    background-color: transparent;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-    padding: 10px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .cancel-btn{
-    margin-right: 1.4rem;
-    margin-left: 1rem;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .cancel-btn:hover{
-    transform: scale(1.2);
-    box-shadow: rgba(242, 42, 42, 0.3) 0px 0px 0px 3px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .cancel-btn:active{
-    transform: scale(1.1);
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .edit-btn:hover{
-    transform: scale(1.2);
-    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .edit-btn:active{
-    transform: scale(1);
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .approved-btn:hover{
-    transform: scale(1.2);
-    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .approved-btn:active{
-    transform: scale(1);
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .reject-btn:hover{
-    transform: scale(1.2);
-    box-shadow: rgba(242, 42, 42, 0.5) 0px 0px 0px 3px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .reject-btn:active{
-    transform: scale(1.1);
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .download-btn:hover{
-    transform: scale(1.2);
-    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
-}
-
-.container-contribution .list-file-contribution-wrapper .edit-contribution-btn .download-btn:active{
-    transform: scale(1.1);
-}
-
-
 
 .container-contribution .file-contribution-wrapper{
     position: relative;
@@ -1314,131 +1318,52 @@ a.download-link {
     height: 100%;
 }
 
-
-.container-contribution .comment-contribution-wrapper{
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-    height: 100%;
-}
-
-.container-contribution .comment-contribution-wrapper .comment-contribution-name{
-    width: 100%;
-}
-
-.container-contribution .comment-contribution-wrapper .comment-contribution-name h2{
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-top: .9rem;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap{
-    position: relative;
-    width: calc(100% - 10%);
-    margin-left: 5%;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution{
-    position: relative;
-    display: grid;
-    gap: .8rem;
-    grid-template-columns: 25% 75%;
-    height: 10%;
-    width: 100%;
-    vertical-align: middle;
-    margin-bottom: 1.5rem;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution h3{
-    font-size: 1rem;
-    font-weight: bold;
-    margin: .9rem 0 0 0;
-    display: flex;
-    align-items: end;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .contribution-feedback h3{
-    align-items: start;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution p{
-    margin: 0;
-    display: flex;
-    align-items: end;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution-by p{
-    align-items: center;
-    margin-left: .5rem;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution .information-mc{
+.container-contribution #contribution-form .contribution-btn-wrap{
     display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution .information-mc img{
-    width: 25%;
-    border-radius: 50%;
-}
-
-.container-contribution .comment-contribution-wrapper .feedback-contribution-wrap .feedback-contribution textarea{
-    resize: none;
-    width: 95.5%;
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox{
-    width: fit-content;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 15px;
-    border-radius: 10px;
-    border: 1px solid rgb(63, 63, 63);
-    margin-left: 1.2rem;
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox:focus-within {
-    border: 1px solid rgb(110, 110, 110);
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox input{
-    width: 200px;
-    height: 100%;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    padding-left: 10px;
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox input:focus ~ button svg path,
-.container-contribution .comment-contribution-wrapper .commentBox input:valid ~ button svg path {
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox button {
-    width: fit-content;
-    height: 100%;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.container-contribution .comment-contribution-wrapper .commentBox button svg {
-    height: 1.3rem;
-    transition: all 0.3s;
-}
-.container-contribution .comment-contribution-wrapper .commentBox button svg path {
-    transition: all 0.3s;
-    fill: none;
-    stroke: #6c6c6c;
-}
-.container-contribution .comment-contribution-wrapper .commentBox button:hover svg path {
+.container-contribution #contribution-form .contribution-btn-wrap .allow-btn:hover{
     transform: scale(1.2);
+    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
 }
 
+.container-contribution #contribution-form .contribution-btn-wrap .allow-btn:active{
+    transform: scale(1);
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .approved-btn:hover{
+    transform: scale(1.2);
+    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .approved-btn:active{
+    transform: scale(1);
+}
+
+
+.container-contribution #contribution-form .contribution-btn-wrap .un-allow-btn:hover{
+    transform: scale(1.2);
+    box-shadow: rgba(242, 42, 42, 0.5) 0px 0px 0px 3px;
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .un-allow-btn:active{
+    transform: scale(1.1);
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .rejected-btn{
+    margin-right: 1rem;
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .rejected-btn:hover{
+    transform: scale(1.2);
+    box-shadow: rgba(242, 42, 42, 0.5) 0px 0px 0px 3px;
+}
+
+.container-contribution #contribution-form .contribution-btn-wrap .rejected-btn:active{
+    transform: scale(1.1);
+}
 
 /* ______________________DIALOG____________________________*/
 .editContribution {
@@ -1663,3 +1588,593 @@ a.download-link {
 .editContribution .edit-dialog .edit-content form .add-file-contribution .open-list li:active{
     transform: scale(1);
 }
+/* ______________________Create-password____________________________*/
+.create-password-layout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.create-password-layout .create-password-wrapper{
+    width: 30%;
+    height: 38%;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap{
+    padding: 4%;
+    width: 100%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .create-password-header h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .create-password-title{
+    font-size: 1rem;
+    opacity: .8;
+    margin-bottom: .5rem;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password{
+    width: 100%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password label{
+    width: 100%;
+    margin-bottom: .2rem;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password .input-password-form{
+    width: 100%;
+    display: inline-flex;
+    border-radius: 5px;
+    border:1px solid rgba(0, 0, 0, 0.4);
+    padding: 2px;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password .input-password-form.focus{
+    border:1px solid rgba(0, 0, 0, 0.8);
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password input{
+    width: 90%;
+    padding: 3px;
+    outline: none;
+    border: none;
+}
+
+
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    padding: 3px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-password button svg{
+    width: 60%;
+    height: 60%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password .input-confirm-password-form{
+    width: 100%;
+    display: inline-flex;
+    border-radius: 5px;
+    border:1px solid rgba(0, 0, 0, 0.4);
+    padding: 2px;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password .input-confirm-password-form.focus{
+    border:1px solid rgba(0, 0, 0, 0.8);
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password{
+    width: 100%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password label{
+    width: 100%;
+    margin-bottom: .2rem;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password input{
+    width: 90%;
+    padding: 3px;
+    outline: none;
+    border: none;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    padding: 3px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .input-confirm-password button svg{
+    width: 60%;
+    height: 60%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .create-password-btn{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .create-password-btn button{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgba(181,181,181, .5);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.create-password-layout .create-password-wrapper .create-password-wrap .create-password-btn button:active{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+/* ______________________List-page____________________________*/
+.listPage{
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+    width: 100%;
+}
+
+.listPage li{
+    padding: 10px;
+    display: inline-flex;
+    cursor: pointer;
+    margin: 2px;
+    border: 0.5px solid rgba(187,187,187,0.3);
+}
+
+.listPage .active{
+    border: 0.5px solid rgba(0,0,0,0.3);
+}
+
+/* ______________________VIEW-CONTRIBUTION____________________________*/
+.contribution-view-wrap{
+    width: 100%;
+    margin: 1.5% 1%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.contribution-view-wrap .list-file-contribution-wrapper{
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 15px;
+}
+
+.contribution-view-wrap .list-file-contribution-wrapper .list-file-contribution-name h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: .9rem;
+}
+.contribution-view-wrap .list-file-contribution-wrapper .list-file-contribution-wrap{
+    width: 100%;
+    font-size: .8rem;
+}
+
+
+.contribution-view-wrap .list-file-contribution-wrapper .list-file-contribution-wrap a{
+    font-size: .9rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 1rem;
+    display: block;
+    border-radius: 25px;
+    width: calc(100% - 10%);
+    padding: .5rem;
+    margin-left: 5%;
+    color: #000000;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    transition: .3s all;
+}
+
+.contribution-view-wrap .list-file-contribution-wrapper .list-file-contribution-wrap a:hover{
+    transform: scale(1.1);
+    color: rgba(52, 119, 241, 1);
+}
+
+.contribution-view-wrap .list-file-contribution-wrapper .list-file-contribution-wrap a:active{
+    transform: scale(1);
+    color: #000000;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .btn-contribution{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.contribution-view-wrap .contribution-btn-wrap button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    padding: 10px;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .cancel-btn{
+    margin-left: 1rem;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .cancel-btn:hover{
+    transform: scale(1.2);
+    box-shadow: rgba(242, 42, 42, 0.3) 0px 0px 0px 3px;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .cancel-btn:active{
+    transform: scale(1.1);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .edit-btn{
+    margin-right: 1rem;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .edit-btn:hover{
+    transform: scale(1.2);
+    box-shadow: rgba(6, 185, 24, 0.3) 0px 0px 0px 3px;
+}
+
+.contribution-view-wrap .contribution-btn-wrap .edit-btn:active{
+    transform: scale(1);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.contribution-view-wrap .file-contribution-wrapper{
+    width: 69%;
+    height: 100%;
+    margin-left: 1%;
+}
+
+
+.comment-contribution-wrapper{
+    display: inline-flex;
+    position: sticky;
+    top: 0;
+    height: 95vh;
+    margin: 1.2% 1%;
+    flex-direction: column;
+    border-radius: 15px;
+    width: 20%;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .status-contribution-name{
+    display: flex;
+    margin-top: 2%;
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .status-contribution-name h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: .9rem;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .comment-contribution-name{
+    display: flex;
+    margin-top: 2%;
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .comment-contribution-name h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: .9rem;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .status-contribution{
+    display: inline-flex;
+    text-align: start;
+    margin: 5% 0;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box{
+    margin: 2% 0;
+    width: 100%;
+    height: 70%;
+    max-height: 30rem;
+    overflow-y: auto;
+    border-top: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box{
+    margin: 2% 0;
+    width: 100%;
+    height: 70%;
+    max-height: 30rem;
+    overflow-y: auto;
+    border-top: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail{
+    display: flex;
+    flex-direction: column;
+    margin-top: .9rem;
+    width: 100%;
+    height: 20%;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor{
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor img{
+    width: 15%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor p{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    margin-left: 2%;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-content{
+    padding: 5px;
+    background-color: transparent;
+    height: fit-content;
+    width: 80%;
+    margin-left: 17%;
+    border: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .time-comment{
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor-self {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor-self img{
+    width: 15%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-infor-self p{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    margin-right: 1.2rem;
+    align-items: center;
+    justify-content: end;
+    border: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .comment-content-self{
+    display: flex;
+    padding: 5px;
+    background-color: transparent;
+    height: fit-content;
+    width: 78%;
+    margin-right: 22%;
+    border: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .list-comment-box .comment-detail .time-comment-self{
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox-wrap{
+    width: 100%;
+    padding-top: 5%;
+    border-top: 1px solid black;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox{
+    display: inline-flex;
+    width: 100%;
+    height: 10%;
+    border: 0.5px solid rgba(133,133,133,0.7);
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox.focus {
+    border: 0.5px solid rgba(0,0,0,0.6);
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox input{
+    width: 85%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox button{
+    width: 15%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.comment-contribution-wrapper .comment-contribution-wrap .commentBox button svg{
+    display: flex;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+}
+
+/* ______________________VIEW-LIST-CONTRIBUTION____________________________*/
+.contribution-submitted-list-wrapper{
+    width: 90%;
+    margin: 1.5% 5%;
+    height: 95vh;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted-head{
+    width: 100%;
+    height: 10%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted-list-wrap{
+    width: 100%;
+    height: 70%;
+    max-height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted-list-wrap form{
+    width: 30%;
+    height: 25%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted{
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted .contribution-submitted-infor{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid black;
+    width: 80%;
+    height: 100%;
+    padding: 5px;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted .contribution-submitted-infor .contribution-submitted-title{
+    display: flex;
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 30%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted .contribution-submitted-infor .contribution-submitted-title h2{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted .contribution-submitted-infor .contribution-submitted-content{
+    display: flex;
+    width: 100%;
+    margin-top: 4%;
+    height: 76%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: .9rem;
+}
+
+.contribution-submitted-list-wrapper .contribution-submitted .view-contribution-btn{
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: rgba(30,53,255,.7);
+    cursor: pointer;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.contribution-submitted-list-wrapper .btn-contribution-submitted{
+    display: inline-flex;
+    width: 100%;
+    height: 8%;
+    justify-content: space-between;
+}
+
+.contribution-submitted-list-wrapper .btn-contribution-submitted button{
+    width: 15%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.contribution-submitted-list-wrapper .btn-contribution-submitted .cancel-btn:hover{
+    transform: scale(1.2);
+    background-color: rgba(255,15,15,0.6);
+}
+
+.contribution-submitted-list-wrapper .btn-contribution-submitted .add-new-btn:hover{
+    transform: scale(1.2);
+    background-color: rgba(22,184,0,0.6);
+}
+
+/* ______________________Edit Contribution____________________________*/
+
+
+
+

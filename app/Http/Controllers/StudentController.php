@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailCreatePassword;
 use App\Mail\EmailNotification;
 use App\Mail\EmailEditContributonNotification;
 use App\Mail\StudentEditContributonNotification;
@@ -27,14 +28,32 @@ class StudentController extends Controller
 {
     public function home()
     {
-        $user = User::where('id', Auth::id())->first();
-        $faculty_id = $user->faculty_id;
-
-        $academicYears = AcademicYear::where('faculty_id', $faculty_id)->get();
+        $academicYears = AcademicYear::where(['status' => 0])->get();
 
         return view('/student/index', [
             'academicYear' => $academicYears
         ]);
+    }
+
+    public function getAcademicYears(Request $request)
+    {
+        dd("Method called");
+        $type = $request->input('type');
+        if ($type == '2') {
+            $contribution = Contribution::where(['user_id' => Auth::id()]);
+            $academicYears = AcademicYear::whereHas('contributions', function($query) use ($contribution) {
+                $query->whereIn('academicYear_id', $contribution->pluck('academicYear_id')->toArray());
+            })->get();
+        } elseif ($type == '3') {
+            $contribution = Contribution::where(['user_id' => Auth::id()]);
+            $academicYears = AcademicYear::whereDoesntHave('contributions', function($query) use ($contribution) {
+                $query->whereIn('academicYear_id', $contribution->pluck('academicYear_id')->toArray());
+            })->get();
+        } else {
+            $academicYears = AcademicYear::all();
+        }
+
+        return response()->json(['academicYears' => $academicYears, ]);
     }
 
     public function terms_and_conditions()
@@ -156,6 +175,7 @@ class StudentController extends Controller
 
     public function contribution_upload(Request $request)
     {
+        $user = User::where('id', Auth::id())->first();
 
         $files = $request->file('file');
         $image = $request->file('backgroundImage');
@@ -164,6 +184,7 @@ class StudentController extends Controller
         $bucketName = env('SUPABASE_BUCKET');
         $url=[];
 
+        $contribution = new Contribution;
 
         $fileImage = null;
         if ($image) {
@@ -178,6 +199,7 @@ class StudentController extends Controller
             if ($response->successful()) {
                 $fileImage = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
             }
+            $contribution->backgroundImage = $fileImage;
         }
 
 
@@ -195,16 +217,24 @@ class StudentController extends Controller
                 }
         }
 
-        $contribution = new Contribution;
         $contribution->user_id = Auth::id();
         $contribution->academicYear_id = $request->id;
         $contribution->title = $request->title;
-        $contribution->content = $request->content;
-        $contribution->backgroundImage = $fileImage;
+        $contribution->content = $request->contents;
         $contribution->location = json_encode($url);
         $contribution->submission_date = now();
+        $contribution->faculty_id = $user->faculty_id;
         $contribution->condition = 'pending';
         $contribution->save();
+
+        $user = User::where('id', Auth::id())->first();
+        $marketing_coordinators = User::where(['roles_id' => 2, 'faculty_id' => $user->faculty_id, 'status' => 0])->get();
+        $academicYear = AcademicYear::where('id', $request->id)->first();
+
+        foreach ($marketing_coordinators as $marketing_coordinator){
+            Mail::to($marketing_coordinator->email)->send(new EmailNotification($user, $marketing_coordinator, $academicYear, $contribution));
+        }
+        Mail::to($user->email)->send(new StudentNotification($user, $academicYear, $contribution));
 
         $contribution = Contribution::where(['user_id' => Auth::id(),
             'academicYear_id' => $request->id, 'status' => 0])->get();
@@ -280,7 +310,7 @@ class StudentController extends Controller
         }
 
         $contribution->title = $request->title;
-        $contribution->content = $request->content;
+        $contribution->content = $request->contents;
         $contribution->location = json_encode($url);
 
         $contribution->save();
