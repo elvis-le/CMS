@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\EmailCreatePassword;
+use App\Mail\EmailCreatePasswordMC;
 use App\Models\Contribution;
 use App\Models\Faculty;
 use App\Models\AcademicYear;
@@ -26,7 +27,16 @@ class AdminController extends Controller
 {
     public function home()
     {
+        $faculties = Faculty::all();
+        $academicYears = AcademicYear::all();
+        $contributions = Contribution::all();
+        $academicYear_id = 1;
+
         return view('/administrators/home', [
+            'faculties' => $faculties,
+            'contributions' => $contributions,
+            'academicYears' => $academicYears,
+            'academicYear_id' => $academicYear_id,
         ]);
     }
 
@@ -62,7 +72,7 @@ class AdminController extends Controller
         $roles_id = $request->roles_id;
         $faculty_id = $request->faculty;
 
-        Mail::to($email)->send(new EmailCreatePassword($name, $email, $phone,$year, $roles_id, $faculty_id));
+        Mail::to($email)->send(new EmailCreatePassword($name, $email, $phone, $year, $roles_id, $faculty_id));
 
         return redirect(route('admin.student', absolute: false));
     }
@@ -110,6 +120,48 @@ class AdminController extends Controller
     }
 
 
+    public function create_password(Request $request)
+    {
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $year = $request->year;
+        $roles_id = $request->roles_id;
+        $faculty_id = $request->faculty_id;
+
+        return view('/administrators/create-password',[
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'year' => $year,
+            'roles_id' => $roles_id,
+            'faculty_id' => $faculty_id,
+        ]);
+    }
+
+    public function create_password_account(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $email_verified_at = now();
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => $email_verified_at,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'years_of_university' => $request->year,
+            'roles_id' => $request->roles_id,
+            'faculty_id' => $request->faculty_id,
+        ]);
+
+        return view('login');
+    }
+
+
     public function academic_year_manage()
     {
         $academicYear = AcademicYear::where('status', 0)->get();
@@ -118,12 +170,9 @@ class AdminController extends Controller
         ]);
     }
 
-
     public function academic_year_add()
     {
-        $faculty = Faculty::where('status', 0)->get();
         return view('/administrators/academic-year-add', [
-            'faculty' => $faculty
         ]);
     }
 
@@ -152,7 +201,6 @@ class AdminController extends Controller
                 $academicYear->name = $request->name;
                 $academicYear->image = $url;
                 $academicYear->detail = $request->detail;
-                $academicYear->faculty_id = $request->faculty;
                 $academicYear->publish_date = now();
                 $academicYear->startDate = $request->startDate;
                 $academicYear->deadline = $request->deadline;
@@ -203,7 +251,6 @@ class AdminController extends Controller
         }
         $academicYear->name = $request->name;
         $academicYear->detail = $request->detail;
-        $academicYear->faculty_id = $request->faculty;
         $academicYear->publish_date = now();
         $academicYear->startDate = $request->startDate;
         $academicYear->deadline = $request->deadline;
@@ -220,6 +267,7 @@ class AdminController extends Controller
             'academicYear' => $academicYear
         ]);
     }
+
 
     public function marketing_coordinator_manage()
     {
@@ -244,27 +292,16 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
         ]);
 
-        $password = Str::random(12);
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $roles_id = $request->role;
+        $faculty_id = $request->faculty;
 
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $password,
-            'phone' => $request->phone,
-            'roles_id' => $request->role,
-            'faculty_id' => $request->faculty,
-        ]);
-
-        if ($user->email_verified_at === null) {
-            $user->sendEmailVerificationNotification();
-        }
-
-        $user->update([
-            'password'=>Hash::make($password)
-        ]);
+        Mail::to($email)->send(new EmailCreatePasswordMC($name, $email, $phone, $roles_id, $faculty_id));
 
         return redirect(route('admin.mc', absolute: false));
+
     }
 
     public function marketing_coordinator_edit(Request $request)
@@ -309,26 +346,24 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create_password(Request $request)
+    public function create_password_mc(Request $request)
     {
         $name = $request->name;
         $email = $request->email;
         $phone = $request->phone;
-        $year = $request->year;
         $roles_id = $request->roles_id;
         $faculty_id = $request->faculty_id;
 
-        return view('/administrators/create-password',[
+        return view('/administrators/create-password-mc',[
             'name' => $name,
             'email' => $email,
             'phone' => $phone,
-            'year' => $year,
             'roles_id' => $roles_id,
             'faculty_id' => $faculty_id,
         ]);
     }
 
-    public function create_password_account(Request $request)
+    public function create_password_account_mc(Request $request)
     {
         $request->validate([
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -342,13 +377,13 @@ class AdminController extends Controller
             'email_verified_at' => $email_verified_at,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'years_of_university' => $request->year,
             'roles_id' => $request->roles_id,
             'faculty_id' => $request->faculty_id,
         ]);
 
         return view('login');
     }
+
     public function faculty_manage()
     {
         $faculty = Faculty::where('status', 0)->get();
@@ -405,4 +440,5 @@ class AdminController extends Controller
             'faculty' => $faculty
         ]);
     }
+
 }
