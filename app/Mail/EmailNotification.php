@@ -22,9 +22,9 @@ class EmailNotification extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        protected User $marketing_coordinator,
         protected User $user,
-    protected AcademicYear $academicYear,
+        protected User $marketing_coordinator,
+        protected AcademicYear $academicYear,
         protected Contribution $contribution,
     )
     {}

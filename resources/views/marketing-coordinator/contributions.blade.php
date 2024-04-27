@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -27,22 +30,18 @@
             </div>
         </div>
         <div class="sidebar">
-            <a href="{{ route('admin.home') }}" class="active">
-                <span class="material-icons" >grid_view</span>
-                <h3>Magazine</h3>
+            <a href="{{ route('mc.home') }}">
+                <span class="material-icons">grid_view</span>
+                <h3>Dashboard</h3>
             </a>
-            {{--            <a href="{{ route('admin.student') }}" class="active">--}}
-            {{--                <span class="material-icons">person</span>--}}
-            {{--                <h3>Student</h3>--}}
-            {{--            </a>--}}
-            {{--            <a href="{{ route('admin.mc') }}">--}}
-            {{--                <span class="material-icons">receipt_long</span>--}}
-            {{--                <h3>Marketing Coordinator</h3>--}}
-            {{--            </a>--}}
-            {{--            <a href="{{ route('admin.academic') }}">--}}
-            {{--                <span class="material-icons">insights</span>--}}
-            {{--                <h3>Academic year</h3>--}}
-            {{--            </a>--}}
+            <a href="{{ route('mc.academicYear') }}" class="active">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <h3>Academic Year</h3>
+            </a>
+            <a href="{{ route('mc.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
@@ -60,17 +59,17 @@
         <div class="list-contributions-name" >
             <h2>Contributions</h2>
         </div>
-        @foreach($groupedContributions as $userId => $contributions)
-            <form action="{{ route('mc.contribution-detail') }}" method="post" enctype="multipart/form-data">
+        @foreach($contribution as $contributions)
+            <form action="{{ route('mc.contribution-detail') }}" class="contributions-student" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="list-contributions-wrap">
 
-                    <input type="hidden" name="student_id" value="{{ $contributions[0]->user->id }}">
-                    <input type="hidden" name="magazine_id" value="{{ $contributions[0]->magazine_id }}">
-                    <h3 class="contribution-user-name">{{ $contributions[0]->user->name }}</h3>
-                    @foreach($contributions as $contribution)
-                        <a class="contribution-file-item" href="https://view.officeapps.live.com/op/view.aspx?src={{ $contribution->content }}" target="_blank">{{basename( $contribution->content) }}</a>
-                    @endforeach
+                    <input type="hidden" name="student_id" value="{{ $contributions->user_id }}">
+                    <input type="hidden" name="academicYear_id" value="{{ $contributions->academicYear_id }}">
+                    <input type="hidden" name="contribution_id" value="{{ $contributions->id }}">
+                    <h3 class="contribution-user-name">{{ $contributions->user->name }} - {{ $contributions->title }}</h3>
+                        <a class="contribution-file-item" href="https://view.officeapps.live.com/op/view.aspx?src={{ $contributions->content }}" target="_blank">{{basename( $contributions->content) }}</a>
+
 
                 </div>
                 <div class="contribution-actions">
@@ -78,6 +77,8 @@
                 </div>
             </form>
         @endforeach
+        <ul class="listPage">
+        </ul>
     </section>
 
 
@@ -90,5 +91,7 @@
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
 <script src="{{ asset('/js/cancel.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/pagination-mm.js') }}"></script>
 </body>
 </html>

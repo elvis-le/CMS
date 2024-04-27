@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Giang Minh Tuấn',
-                'email' => 'tuan123@gmail.com',
+                'email' => 'minhtuan123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Tuan123@'),
                 'phone' => '0945834523',
@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Võ Hoàng Phúc',
-                'email' => 'phuc123@gmail.com',
+                'email' => 'hoangphuc123@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Phuc123@'),
                 'phone' => '0667453223',

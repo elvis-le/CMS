@@ -9,10 +9,14 @@
     <link href="{{ asset('/css/bootstrap-login.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style-login.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Educational Bootstrap 5 Login Page Website Tampalte</title>
+    <title>Login Page</title>
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
+
 <section class="form-02-main">
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -70,4 +74,6 @@
     </div>
 
     </form>
+
+    <script src="{{ asset('/js/error.js') }}"></script>
 </section>

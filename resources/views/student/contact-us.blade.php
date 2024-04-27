@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
-    <!-- ======================header started====================== -->
-
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
    <header>
        <div class="my-nav">
            <div class="container">
@@ -30,6 +31,22 @@
                                    <li><a href="{{ url('/student/index') }}">Home</a></li>
                                    <li><a href="{{ url('/student/terms-and-conditions') }}">Terms and Conditions</a></li>
                                    <li><a href="{{ url('/student/contact-us') }}">Contact Us</a></li>
+                                   <li>
+                                       <div class="dropdown">
+                                           <button id="btn-dropdown" class="dropbtn">
+                                               <div>{{ Auth::user()->name }}</div>
+                                           </button>
+                                           <div id="mydropdown" class="dropdown-content">
+                                               <a href="{{ route('student.profile') }}" style="color: #1b1e21">Profile</a>
+                                               <form method="POST" action="{{ route('logout') }}">
+                                                   @csrf
+                                                   <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();"  style="color: #1b1e21">Log Out</a>
+                                               </form>
+                                           </div>
+                                       </div>
+                                   </li>
+
                                </ul>
                            </div>
                        </div>
@@ -223,4 +240,7 @@
 <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
+<script src="{{ asset('/js/dropdown.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/cancel.js') }}"></script>
 </html>

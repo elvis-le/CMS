@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailRepCommentContribution;
 use App\Mail\EmailCreatePassword;
 use App\Mail\EmailNotification;
 use App\Mail\EmailEditContributonNotification;
+use App\Mail\EmailOthersRepCommentContribution;
+use App\Mail\StudentRepCommentContribution;
 use App\Mail\StudentEditContributonNotification;
 use App\Mail\StudentNotification;
 use App\Models\Comment;
@@ -141,6 +144,19 @@ class StudentController extends Controller
             'comment' => $request->comment,
             'comment_date' => now(),
         ]);
+
+        $contribution = Contribution::where([
+            'id' => $request->contribution_id,
+            'status' => 0
+        ])->first();
+        $user = User::where('id', Auth::id())->first();
+        $marketing_coordinators = User::where(['roles_id' => 2, 'faculty_id' => $user->faculty_id, 'status' => 0])->get();
+        $academicYear = AcademicYear::where('id', $contribution->academicYear_id)->first();
+        foreach ($marketing_coordinators as $marketing_coordinator){
+                Mail::to($marketing_coordinator->email)->send(new EmailRepCommentContribution($user, $marketing_coordinator, $academicYear, $contribution));
+        }
+        Mail::to($user->email)->send(new StudentRepCommentContribution($user, $marketing_coordinator, $academicYear, $contribution));
+
         $academicYears = AcademicYear::findOrFail($request->academicYear_id);
         $currentDate = Carbon::now();
         $finalDeadline = Carbon::parse($academicYears->finalDeadline);
@@ -387,11 +403,11 @@ class StudentController extends Controller
                 if (Hash::check($request->old_password, $user->password)) {
                     if ($request->hasFile('image')) {
                         $imageFile = $request->file('image');
-
+                        $filepath = Str::random(10) . '_' . $imageFile->getClientOriginalName();
                         $response = Http::attach(
                             'file',
                             file_get_contents($imageFile->getRealPath()),
-                            $filepath = $imageFile->getClientOriginalName()
+                            $filepath
                         )->withHeaders([
                             'Authorization' => 'Bearer ' . $apiKey
                         ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
@@ -423,11 +439,11 @@ class StudentController extends Controller
         }
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
-
+            $filepath = Str::random(10) . '_' . $imageFile->getClientOriginalName();
             $response = Http::attach(
                 'file',
                 file_get_contents($imageFile->getRealPath()),
-                $filepath = $imageFile->getClientOriginalName()
+                $filepath
             )->withHeaders([
                 'Authorization' => 'Bearer ' . $apiKey
             ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");

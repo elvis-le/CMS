@@ -10,84 +10,160 @@
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body >
 
-<!-- ======================header started====================== -->
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container-contribution">
-    <section class="list-file-contribution-wrapper">
-        <div class="list-file-contribution-name">
-            <h2>List File</h2>
-        </div>
-        <div class="list-file-contribution-wrap">
-            @foreach($contributions as $contribution)
-                <a href="#" class="file-link" data-src="{{ $contribution->content }}">{{basename( $contribution->content) }}</a>
-            @endforeach
-        </div>
-        <form action="" method="post" enctype="multipart/form-data" class="edit-contribution-btn" id="contribution-form">
+    @foreach($contributions as $contribution)
+        <form action="" id="contribution-form" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="magazine_id" value="{{ $contribution->magazine_id }}">
+            <input type="hidden" name="contribution_id" value="{{ $contribution->id }}">
             <input type="hidden" name="student_id" value="{{ $contribution->user_id }}">
-            <div class="btn-contribution"  style="width: 100%; text-align: center; ">
-                <button class="cancel-btn" type="button">Cancel</button>
-            </div>
-        </form>
-    </section>
-    <section class="file-contribution-wrapper">
-    </section>
-    <section class="comment-contribution-wrapper">
-        <div class="comment-contribution-name">
-            <h2>Comment</h2>
-        </div>
-        <div class="feedback-contribution-wrap">
-            <div class="feedback-contribution-condition feedback-contribution">
-                <h3>Condition</h3>
-                <p>Pending</p>
-            </div>
-            <div class="feedback-contribution-time feedback-contribution">
-                <h3>Comment on</h3>
-                <p>18 December 2023, 3:37 PM</p>
-            </div>
-            <div class="feedback-contribution-by feedback-contribution">
-                <h3>Comment by</h3>
-                <div class="information-mc">
-                    <img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/avatar.jpg">
-                    <p>Nguyễn Văn Tùng</p>
+            <input type="hidden" name="academicYear_id" value="{{ $contribution->academicYear_id }}">
+            <div class="contribution-view-wrap  contribution-form-wrap">
+                <div class="head-contribution-view contribution-form-head">
+                    <div class="image-contribution-view contribution-form-img">
+                        <label for="file-contribution"><img class="image-contribution" src="{{ $contribution->backgroundImage }}" ></label>
+                    </div>
+                    <div class="title-content-contribution">
+                        <div class="title-contribution">
+                            <input name="title" type="text" placeholder="Title" value="{{ $contribution->title }}" readonly>
+                        </div>
+                        <div class="content-contribution">
+                            <textarea name="content" placeholder="Content" readonly>{{ $contribution->content }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-contribution-view contribution-form-body">
+                    <section class="list-file-contribution-wrapper">
+                        <div class="list-file-contribution-name">
+                            <h2>List File</h2>
+                        </div>
+                        <div class="list-file-contribution-wrap">
+                            @if($contribution->academicYear_id == $academicYear->id)
+                                @php
+                                    $urls = json_decode($contribution->location);
+                                @endphp
+                                @if(is_array($urls))
+                                    @foreach($urls as $url)
+                                        <a href="#" class="file-link" data-src="{{ $url }}">{{ basename($url) }}</a>
+                                    @endforeach
+                                @endif
+                            @endif
+                        </div>
+
+                    </section>
+                    <section class="file-contribution-wrapper">
+                    </section>
                 </div>
             </div>
-            <div class="contribution-feedback feedback-contribution">
-                <h3>Comment</h3>
-                <textarea rows="5">
-A professional body is an organization that represents and supports individuals within a specific profession or industry. These bodies typically have a focus on maintaining and improving professional standards, providing guidance and resources for practitioners, and often play a role in regulating the profession. Professional bodies can serve various functions including:
-
-Setting and maintaining professional standards: They establish codes of conduct, ethical guidelines, and competency frameworks to ensure members adhere to best practices within their profession.
-
-Providing professional development and education: They offer training programs, workshops, seminars, and certifications to help members enhance their skills and knowledge.
-
-Offering networking opportunities: Professional bodies often organize events, conferences, and forums where members can connect, share ideas, and collaborate with peers in their field.
-
-Advocating for the profession: They may lobby governments, industry organizations, and other stakeholders on behalf of their members to promote the interests of the profession and address relevant issues.
-
-Regulating the profession: In some cases, professional bodies have regulatory authority to license practitioners, set accreditation standards for educational programs, and enforce disciplinary measures for misconduct.
-                </textarea>
+        </form>
+    @endforeach
+    <section class="comment-contribution-wrapper" >
+        <div class="comment-contribution-wrap" >
+            <div class="status-contribution-name">
+                <h2>Status</h2>
+            </div>
+            <div class="status-contribution">
+                @if($contribution->condition == 'pending')
+                    <p>Condition: <span style="color: rgba(30,30,255,1)"> {{ $contribution->condition }}</span></p>
+                @elseif($contribution->condition == 'approved')
+                    <p>Condition: <span style="color: rgba(6,186,5, 0.8)"> {{ $contribution->condition }}</span></p>
+                @else
+                    <p>Condition: <span style="color: rgba(236,39,39,1)"> {{ $contribution->condition }}</span></p>
+                @endif
+            </div>
+            <div class="comment-contribution-name">
+                <h2>Comment</h2>
+            </div>
+            <div class="list-comment-box">
+                <div class="comment-detail">
+                    @foreach($comments as $comment)
+                        @if($comment->user_id == Auth::id())
+                            <div class="comment-infor-self">
+                                @php
+                                    $userImage = '';
+                                    $userName = '';
+                                @endphp
+                                @foreach ($user_group as $user_group_id)
+                                    @foreach ($user_group_id as $user_id)
+                                        @foreach ($users as $user)
+                                            @if($user->id == $user_id)
+                                                @if ($user->id == $comment->user_id)
+                                                    @php
+                                                        $userImage = $user->image;
+                                                        $userName = $user->name;
+                                                    @endphp
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                                <p>{{ $userName }}</p>
+                                <img src="{{ $userImage }}">
+                            </div>
+                            <p class="comment-content-self" id="comment-content" type="text">{{ $comment->comment }}</p>
+                            <p class="time-comment-self">Comment at: {{ $comment->comment_date }}</p>
+                        @else
+                            <div class="comment-infor">
+                                @php
+                                    $userImage = '';
+                                    $userName = '';
+                                @endphp
+                                @foreach ($user_group as $user_group_id)
+                                    @foreach ($user_group_id as $user_id)
+                                        @foreach ($users as $user)
+                                            @if($user->id == $user_id)
+                                                @if ($user->id == $comment->user_id)
+                                                    @php
+                                                        $userImage = $user->image;
+                                                        $userName = $user->name;
+                                                    @endphp
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                                <img src="{{ $userImage }}">
+                                <p>{{ $userName }}</p>
+                            </div>
+                            <p class="comment-content" id="comment-content" type="text">{{ $comment->comment }}</p>
+                            <p class="time-comment">Comment at: {{ $comment->comment_date }}</p>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="commentBox-wrap">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('patch')
+                    <input type="hidden" name="contribution_id" value="{{ $contribution->id }}">
+                    <input type="hidden" name="student_id" value="{{ $contribution->user_id }}">
+                    <input type="hidden" name="academicYear_id" value="{{ $contribution->academicYear_id }}">
+                    <div class="commentBox">
+                        <input required="" type="text" id="input-rep-comment" name="comment" placeholder="Comment..." disabled>
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="commentBox">
-            <form action="" method="" enctype="multipart/form-data">
-                @csrf
-                <input required="" type="text" id="input-rep-comment" name="comment" placeholder="Comment...">
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
-                </button>
-            </form>
-        </div>
     </section>
-
 </div>
-
 </body>
+<script>
+    document.getElementById("input-rep-comment").addEventListener("focus", function() {
+        document.getElementById("commentBox").classList.add("focused");
+    });
 
+    document.getElementById("input-rep-comment").addEventListener("blur", function() {
+        document.getElementById("commentBox").classList.remove("focused");
+    });
+</script>
 
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('/js/popper.min.js') }}"></script>
@@ -96,4 +172,5 @@ Regulating the profession: In some cases, professional bodies have regulatory au
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/cancel.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
 </html>

@@ -14,11 +14,26 @@ class FacultySeeder extends Seeder
     public function run(): void
     {
         DB::table('faculties')->insert([
-            ['faculty' => 'Information technology'],
-            ['faculty' => 'Graphic design'],
-            ['faculty' => 'Business administration'],
-            ['faculty' => 'Marketing'],
-            ['faculty' => 'Artificial intelligence'],
+            [
+                'faculty' => 'Information technology',
+                'created_at' => now(),
+            ],
+            [
+                'faculty' => 'Graphic design',
+                'created_at' => now(),
+            ],
+            [
+                'faculty' => 'Business administration',
+                'created_at' => now(),
+            ],
+            [
+                'faculty' => 'Marketing',
+                'created_at' => now(),
+            ],
+            [
+                'faculty' => 'Artificial intelligence',
+                'created_at' => now(),
+            ]
         ]);
     }
 }

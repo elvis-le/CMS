@@ -21,12 +21,9 @@ return new class extends Migration
             $table->date('deadline');
             $table->date('finalDeadline');
             $table->integer('status')->default(0);
-            $table->unsignedBigInteger('faculty_id');
 
             $table->timestamps();
 
-
-            $table->foreign('faculty_id')->references('id')->on('faculties');
         });
     }
 

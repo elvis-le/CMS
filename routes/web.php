@@ -6,12 +6,28 @@ use App\Http\Controllers\MarketingCoordinatorController;
 use App\Http\Controllers\MarketingManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Models\AcademicYear;
+use App\Models\Contribution;
+use App\Models\Faculty;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/create-password', [AdminController::class, 'create_password'])
+    ->name('create-password');
+
+Route::post('/create-password', [AdminController::class, 'create_password_account'])
+    ->name('student.create-password');
+
+Route::get('/create-password-mc', [AdminController::class, 'create_password_mc'])
+    ->name('create-password-mc');
+
+Route::post('/create-password-mc', [AdminController::class, 'create_password_account_mc'])
+    ->name('student.create-password-mc');
 
 Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(function (){
     Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
@@ -21,6 +37,12 @@ Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(f
     Route::patch('/student-save', [AdminController::class, 'student_save'])->name('user.save');
     Route::get('/student-add', [AdminController::class, 'student_add'])->name('user.add');
     Route::match(['get', 'post'],'/student-delete', [AdminController::class, 'student_delete'])->name('user.delete');
+    Route::get('/guest', [AdminController::class, 'guest_manage'])->name('admin.guest');
+    Route::match(['get', 'post'],'/guest-edit', [AdminController::class, 'guest_edit'])->name('guest.edit');
+    Route::patch('/guest-edit-save', [AdminController::class, 'guest_edit_save'])->name('guest.edit-save');
+    Route::patch('/guest-save', [AdminController::class, 'guest_save'])->name('guest.save');
+    Route::get('/guest-add', [AdminController::class, 'guest_add'])->name('guest.add');
+    Route::match(['get', 'post'],'/guest-delete', [AdminController::class, 'guest_delete'])->name('guest.delete');
     Route::get('/academic-year', [AdminController::class, 'academic_year_manage'])->name('admin.academic');
     Route::post('/academic-year-edit', [AdminController::class, 'academic_year_edit'])->name('academic.edit');
     Route::patch('/academic-year-edit-save', [AdminController::class, 'academic_year_edit_save'])->name('academic.edit-save');
@@ -39,11 +61,15 @@ Route::prefix('administrators')->middleware(['auth', 'administrators'])->group(f
     Route::patch('/faculty-save', [AdminController::class, 'faculty_save'])->name('faculty.save');
     Route::get('/faculty-add', [AdminController::class, 'faculty_add'])->name('faculty.add');
     Route::match(['get', 'post'],'/faculty-delete', [AdminController::class, 'faculty_delete'])->name('faculty.delete');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::patch('/profile', [AdminController::class, 'profile_save'])->name('admin.profile-save');
 });
+
+
 
 Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
     Route::get('/index', [StudentController::class, 'home'])->name('student.index');
-    Route::get('/academicYear-detail', [StudentController::class, 'academicYear_detail']);
+    Route::get('/academicYear-detail', [StudentController::class, 'academicYear_detail'])->name('st.academicYear-detail');
     Route::patch('/comment', [StudentController::class, 'comment'])->name('student.comment');
     Route::match(['get', 'post'], '/submit-contribution', [StudentController::class, 'submit_contribution'])->name('st.submit-contribution');
     Route::match(['get', 'post'], '/contribution-detail', [StudentController::class, 'contribution_detail'])->name('st.contribution-detail');
@@ -56,22 +82,31 @@ Route::prefix('student')->middleware(['auth', 'student'])->group(function (){
     Route::get('/contact-us', [StudentController::class, 'contact_us']);
     Route::get('/profile', [StudentController::class, 'profile'])->name('student.profile');
     Route::patch('/profile', [StudentController::class, 'profile_save'])->name('student.profile-save');
+    Route::get('/get-academic-years', [StudentController::class, 'getAcademicYears'])->name('student.get-academic-years');
 });
 
 Route::prefix('marketing-manager')->middleware(['auth', 'mm'])->group(function (){
-    Route::get('/home', [MarketingManagerController::class, 'home']);
+    Route::get('/home', [MarketingManagerController::class, 'home'])->name('mm.home');
+    Route::get('/academicYear', [MarketingManagerController::class, 'academicYear'])->name('mm.academicYear');
+    Route::get('/profile', [MarketingManagerController::class, 'profile'])->name('mm.profile');
+    Route::patch('/profile', [MarketingManagerController::class, 'profile_save'])->name('mm.profile-save');
     Route::match(['get', 'post'], '/contribution', [MarketingManagerController::class, 'contribution'])->name('contribution');
     Route::post('contribution-detail', [MarketingManagerController::class, 'contribution_detail'])->name('mm.contribution-detail');
     Route::match(['get', 'post'], 'download', [MarketingManagerController::class, 'download'])->name('mm.download');
 });
 
 Route::prefix('marketing-coordinator')->middleware(['auth', 'mc'])->group(function (){
-    Route::get('/home', [MarketingCoordinatorController::class, 'home']);
-    Route::match(['get', 'post'], '/contributions', [MarketingCoordinatorController::class, 'contributions'])->name('contributions');
-    Route::post('contribution-detail', [MarketingCoordinatorController::class, 'contribution_detail'])->name('mc.contribution-detail');
+    Route::get('/home', [MarketingCoordinatorController::class, 'home'])->name('mc.home');
+    Route::get('/academicYear', [MarketingCoordinatorController::class, 'academicYear'])->name('mc.academicYear');
+    Route::get('/profile', [MarketingCoordinatorController::class, 'profile'])->name('mc.profile');
+    Route::patch('/profile', [MarketingCoordinatorController::class, 'profile_save'])->name('mc.profile-save');
     Route::patch('/comment', [MarketingCoordinatorController::class, 'comment'])->name('mc.comment');
+    Route::match(['get', 'post'], '/contributions', [MarketingCoordinatorController::class, 'contributions'])->name('contributions');
+    Route::match(['get', 'post'],'/contribution-detail', [MarketingCoordinatorController::class, 'contribution_detail'])->name('mc.contribution-detail');
     Route::post( '/approved', [MarketingCoordinatorController::class, 'approved'])->name('approved');
     Route::post( '/rejected', [MarketingCoordinatorController::class, 'rejected'])->name('rejected');
+    Route::post( '/allow-guest', [MarketingCoordinatorController::class, 'allow_guest'])->name('allowGuest');
+    Route::post( '/un-allow-guest', [MarketingCoordinatorController::class, 'un_allow_guest'])->name('unAllowGuest');
 });
 
 Route::prefix('guest')->middleware(['auth', 'guests'])->group(function (){

@@ -38,6 +38,10 @@
                 <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
@@ -49,6 +53,10 @@
             <a href="{{ route('admin.faculty') }}">
                 <span class="material-symbols-outlined">subject</span>
                 <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -83,14 +91,6 @@
             <div class="form-information-wrap">
                 <label for="detail-academic-year">Detail</label>
                 <textarea id="detail-academic-year" rows="3" name="detail">{{ $academicYear->detail }}</textarea>
-            </div>
-            <div class="form-information-wrap">
-                <label >Faculty ID</label>
-                <select name="faculty">
-                    @foreach($faculty as $info)
-                        <option value="{{ $info->id }}" @if($info->id === $academicYear->faculty_id) selected @endif>{{ $info->faculty }}</option>
-                    @endforeach
-                </select>
             </div>
             <div class="form-information-wrap">
                 <label for="deadline-academic-year">Start Date</label>

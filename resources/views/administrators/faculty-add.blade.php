@@ -38,6 +38,10 @@
                 <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
@@ -49,6 +53,10 @@
             <a href="{{ route('admin.faculty') }}" class="active">
                 <span class="material-symbols-outlined">subject</span>
                 <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -91,5 +99,6 @@
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
 <script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/cancel.js') }}"></script>
 </body>
 </html>

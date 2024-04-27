@@ -1089,7 +1089,7 @@ main .recent-orders a{
     background: #fff;
     z-index: 9;
 width: 100%;
-    max-height: 50rem;
+    max-height: 52rem;
     overflow-y: auto;
 }
 
@@ -1418,6 +1418,13 @@ width: 30%}
 
 .listPage .active{
     border: 0.5px solid rgba(0,0,0,0.3);
+}
+
+.academicYearSelect{
+    padding: 5px;
+    border-radius: 10px;
+    width: 20%;
+    height: 100%;
 }
 
 

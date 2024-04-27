@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -32,16 +35,28 @@
                 <h3>Dashboard</h3>
             </a>
             <a href="{{ route('admin.student') }}">
-                <span class="material-icons">person</span>
+                <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}">
-                <span class="material-icons">receipt_long</span>
+                <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
             </a>
             <a href="{{ route('admin.academic') }}" class="active">
-                <span class="material-icons">insights</span>
+                <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Academic year</h3>
+            </a>
+            <a href="{{ route('admin.faculty') }}">
+                <span class="material-symbols-outlined">subject</span>
+                <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -79,18 +94,16 @@
                     <tr class="table-academic-year-list-head table-list-head">
                         <th class="table-academic-year-head table-head">Name</th>
                         <th class="table-academic-year-head table-head">Detail</th>
-                        <th class="table-academic-year-head table-head">Faculty</th>
                         <th class="table-academic-year-head table-head">Publish Date</th>
                         <th class="table-academic-year-head table-head">Deadline</th>
-                        <th class="table-academic-year-head table-head">Active</th>
+                        <th class="table-academic-year-head table-head" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;">Active</th>
                     </tr>
                     </thead>
                     <tbody class="table-academic-year-list-body-wrap table-list-body-wrap">
-                    @foreach($magazine as $info)
+                    @foreach($academicYear as $info)
                         <tr class="table-academic-year-list-body table-list-body">
-                            <td class="table-academic-year-body table-body">{{ $info->magazine_name }}</td>
-                            <td class="table-academic-year-body table-body">{{ $info->magazine_detail }}</td>
-                            <td class="table-academic-year-body table-body">{{ $info->faculty_id }}</td>
+                            <td class="table-academic-year-body table-body">{{ $info->name }}</td>
+                            <td class="table-academic-year-body table-body">{{ $info->detail }}</td>
                             <td class="table-academic-year-body table-body">{{ $info->publish_date }}</td>
                             <td class="table-academic-year-body table-body">{{ $info->deadline }}</td>
                             <td class="table-academic-year-body table-body">
@@ -127,7 +140,6 @@
 
 
 </div>
-<script src="{{ asset('/js/order.js') }}"></script>
 <script src="{{ asset('/js/index.js') }}"></script>
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('/js/popper.min.js') }}"></script>
@@ -136,5 +148,7 @@
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/search-bar.js') }}"></script>
 </body>
 </html>

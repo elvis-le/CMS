@@ -31,20 +31,19 @@
                 <input name="title" type="text" placeholder="Title">
             </div>
             <div class="content-contribution">
-                <textarea name="content" placeholder="Content"></textarea>
+                <textarea name="contents" placeholder="Content"></textarea>
             </div>
         </div>
     </div>
     <div class="body-contribution-submit  contribution-form-body">
-        <nav class="form-contribution">
-            <div class="add-contribution">+</div>
+        <nav class="form-contribution" style="width: 100%;">
+            <div class="add-contribution"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg></div>
             <div class="list-contribution">
                 <li class="word-contribution">Word</li>
+                <li class="img-contribution">Image</li>
                 <li class="pdf-contribution">PDF</li>
             </div>
         </nav>
-        <div class="show-contribution">
-        </div>
     </div>
         <div class="contribution-btn-wrap">
             @if($startDate->greaterThan($currentDate))
@@ -63,7 +62,7 @@
                     <a href="{{ url('/student/terms-and-conditions') }}">Term and Conditions</a>
                 </div>
                 <div class="btn-contribution">
-                    <button class="cancel-btn" type="button">Cancel</button>
+                    <button class="cancel-btn" id="cancel-btn" data-route="{{ route('st.contribution') }}" type="button">Cancel</button>
                     <button class="submit" id="submit">Submit</button>
                 </div>
             @endif

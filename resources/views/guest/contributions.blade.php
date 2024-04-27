@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -29,7 +32,7 @@
         <div class="sidebar">
             <a href="{{ route('admin.home') }}" class="active">
                 <span class="material-icons" >grid_view</span>
-                <h3>Magazine</h3>
+                <h3>Academic Year</h3>
             </a>
             {{--            <a href="{{ route('admin.student') }}" class="active">--}}
             {{--                <span class="material-icons">person</span>--}}
@@ -60,17 +63,17 @@
         <div class="list-contributions-name" >
             <h2>Contributions</h2>
         </div>
-        @foreach($groupedContributions as $userId => $contributions)
+        @foreach($contributions as $contribution)
             <form action="{{ route('guest.contribution-detail') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="list-contributions-wrap">
 
-                    <input type="hidden" name="student_id" value="{{ $contributions[0]->user->id }}">
-                    <input type="hidden" name="magazine_id" value="{{ $contributions[0]->magazine_id }}">
-                    <h3 class="contribution-user-name">{{ $contributions[0]->user->name }}</h3>
-                    @foreach($contributions as $contribution)
-                        <a class="contribution-file-item" href="https://view.officeapps.live.com/op/view.aspx?src={{ $contribution->content }}" target="_blank">{{basename( $contribution->content) }}</a>
-                    @endforeach
+                    <input type="hidden" name="student_id" value="{{ $contribution->user_id }}">
+                    <input type="hidden" name="academicYear_id" value="{{ $contribution->academicYear_id }}">
+                    <input type="hidden" name="contribution_id" value="{{ $contribution->id }}">
+                    <h3 class="contribution-user-name">{{ $contribution->user->name }} - {{ $contribution->title }}</h3>
+                    <a class="contribution-file-item" href="https://view.officeapps.live.com/op/view.aspx?src={{ $contribution->content }}" target="_blank">{{basename( $contribution->content) }}</a>
+
 
                 </div>
                 <div class="contribution-actions">
@@ -90,5 +93,6 @@
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
 <script src="{{ asset('/js/cancel.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
 </body>
 </html>

@@ -35,16 +35,28 @@
                 <h3>Dashboard</h3>
             </a>
             <a href="{{ route('admin.student') }}">
-                <span class="material-icons">person</span>
+                <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}" class="active">
-                <span class="material-icons">receipt_long</span>
+                <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
             </a>
             <a href="{{ route('admin.academic') }}">
-                <span class="material-icons">insights</span>
+                <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Academic year</h3>
+            </a>
+            <a href="{{ route('admin.faculty') }}">
+                <span class="material-symbols-outlined">subject</span>
+                <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

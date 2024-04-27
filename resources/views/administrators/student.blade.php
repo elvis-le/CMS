@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -32,16 +35,28 @@
                 <h3>Dashboard</h3>
             </a>
             <a href="{{ route('admin.student') }}" class="active">
-                <span class="material-icons">person</span>
+                <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}">
-                <span class="material-icons">receipt_long</span>
+                <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
             </a>
             <a href="{{ route('admin.academic') }}">
-                <span class="material-icons">insights</span>
+                <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Academic year</h3>
+            </a>
+            <a href="{{ route('admin.faculty') }}">
+                <span class="material-symbols-outlined">subject</span>
+                <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -66,32 +81,10 @@
                 <input class="search-bar" type="text" name="search-bar" id="search-bar" placeholder="Search">
             </div>
             <div class="container-checkbox">
-                <div class="year-of-university">
-                    <div class="year-of-university-name">
-                        <p>Year</p>
-                    </div>
-                    <input id="1" type="checkbox" checked name="year">
-                    <label for="1">1</label>
-                    <input id="2" type="checkbox" checked name="year">
-                    <label for="2">2</label>
-                    <input id="3" type="checkbox" checked name="year">
-                    <label for="3">3</label>
-                    <input id="4" type="checkbox" checked name="year">
-                    <label for="4">4</label>
-                </div>
-                <div class="available-deleted">
-                    <div class="available-deleted-name">
-                        <p>Status</p>
-                    </div>
-                    <input id="available" type="checkbox" checked name="available-deleted">
-                    <label for="available">Avaiable</label>
-                    <input id="deleted" type="checkbox" checked name="available-deleted">
-                    <label for="deleted">Delete</label>
-                </div>
-                <div class="create-student create-new">
-                        <form action="{{ route('user.add') }}">
-                            <button class="create-student-btn create-new-btn">Create</button>
-                        </form>
+                <div class="create-marketing-coordinator create-new"  style="width: 100%">
+                    <form action="{{ route('user.add') }}">
+                        <button class="create-marketing-coordinator-btn create-new-btn">Create</button>
+                    </form>
                 </div>
             </div>
 
@@ -156,5 +149,8 @@
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/search-bar.js') }}"></script>
+
 </body>
 </html>

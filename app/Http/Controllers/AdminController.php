@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Validation\Rules;
@@ -439,6 +440,192 @@ class AdminController extends Controller
         return view('/administrators/faculty', [
             'faculty' => $faculty
         ]);
+    }
+
+    public function guest_manage()
+    {
+        $user = User::where(['roles_id' => 5, 'status' => 0])->get();
+        return view('/administrators/guest', [
+            'user' => $user
+        ]);
+    }
+
+    public function guest_add()
+    {
+        $faculty = Faculty::where('status', 0)->get();
+        return view('/administrators/guest-add', [
+            'faculty' => $faculty
+        ]);
+    }
+
+
+    public function guest_save(Request $request): RedirectResponse
+    {
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $email_verified_at = now();
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => $email_verified_at,
+            'password' => Hash::make($request->password),
+            'roles_id' => $request->roles_id,
+            'faculty_id' => $request->faculty,
+        ]);
+
+        return redirect(route('admin.guest', absolute: false));
+    }
+
+    public function guest_edit(Request $request)
+    {
+        $user = User::where('id', $request->id)->first();
+        $faculty = Faculty::where('status', 0)->get();
+        return view('/administrators/guest-edit', [
+            'user' => $user,
+            'faculty' => $faculty
+        ]);
+    }
+
+    public function guest_edit_save(Request $request): RedirectResponse
+    {
+
+        if($request->password != null || $request->new_password != null ){
+
+            $validator = Validator::make($request->all(), [
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+            if ($validator->passes()) {
+                User::where('id', $request->id)->update([
+                    "name"=>$request->name,
+                    "email"=>$request->email,
+                    "password" => Hash::make($request->password),
+                    "roles_id"=>$request->role,
+                    "faculty_id"=>$request->faculty,
+                ]);
+            }else{
+                return redirect()->route('guest.edit',[
+                    "id"=>$request->id,
+                ])->with('error', 'The password is not the same.');
+            }
+            }
+
+        $user = User::find($request->id);
+
+        if (!$user) {
+            abort(404);
+        }
+        User::where('id', $request->id)->update([
+            "name"=>$request->name,
+            "email"=>$request->email,
+            "roles_id"=>$request->role,
+            "faculty_id"=>$request->faculty,
+            ]);
+
+        return Redirect::route('admin.guest')->with('notification', 'Successfully');
+    }
+
+    public function guest_delete(Request $request)
+    {
+        User::where('id', $request->id)->update(["status"=>1]);
+        $user = User::where(['roles_id' => 5, 'status' => 0])->get();
+        return view('/administrators/guest', [
+            'user' => $user
+        ]);
+    }
+
+    public function profile()
+    {
+        $user = User::where(['id' => Auth::id(), 'status' => 0])->first();
+        return view('/administrators/profile', [
+            'user' => $user,
+        ]);
+    }
+
+    public function profile_save(Request $request)
+    {
+        $user = User::where(['id'=> Auth::id()])->first();
+        $supabaseUrl = env('SUPABASE_URL');
+        $apiKey = env('SUPABASE_KEY');
+        $bucketName = env('SUPABASE_BUCKET');
+
+        if($request->old_password != null || $request->new_password != null ){
+
+            $validator = Validator::make($request->all(), [
+                'old_password' => ['required'],
+                'new_password' => ['required', Rules\Password::defaults()],
+                'confirm_new_password' => ['required', 'same:new_password'],
+            ]);
+            if ($validator->passes()) {
+                if (!Hash::check($request->old_password, $user->password)){
+                    return redirect()->route('admin.profile')->with('error', 'Incorrect password.');
+                }
+                if (Hash::check($request->old_password, $user->password)) {
+                    if ($request->hasFile('image')) {
+                        $imageFile = $request->file('image');
+                        $filepath = Str::random(10) . '_' . $imageFile->getClientOriginalName();
+                        $response = Http::attach(
+                            'file',
+                            file_get_contents($imageFile->getRealPath()),
+                            $filepath
+                        )->withHeaders([
+                            'Authorization' => 'Bearer ' . $apiKey
+                        ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+                        $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+                        if ($response->successful()) {
+                            $user->password = Hash::make($request->new_password);
+                            $user->name = $request->name;
+                            $user->phone = $request->phone;
+                            $user->image = $url;
+                            $user->save();
+                            return redirect()->route('admin.profile')->with('notification', 'Changes successfully.');
+                        }
+                    }
+                    $user->password = Hash::make($request->new_password);
+                    $user->name = $request->name;
+                    $user->phone = $request->phone;
+                    $user->save();
+                    return redirect()->route('admin.profile')->with('notification', 'Changes successfully.');
+                }
+
+            } else {
+                $errors = $validator->errors();
+                if ($errors->has('confirm_new_password')) {
+                    return redirect()->route('admin.profile')->with('error', 'The new password is not the same.');
+                }
+                return redirect()->route('admin.profile')->with('error', 'Please fill in all required fields.');
+            }
+        }
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $filepath = Str::random(10) . '_' . $imageFile->getClientOriginalName();
+            $response = Http::attach(
+                'file',
+                file_get_contents($imageFile->getRealPath()),
+                $filepath
+            )->withHeaders([
+                'Authorization' => 'Bearer ' . $apiKey
+            ])->post("$supabaseUrl/storage/v1/object/$bucketName/{$filepath}");
+            $url = "$supabaseUrl/storage/v1/object/public/$bucketName/{$filepath}";
+
+            if ($response->successful()) {
+                $user->name = $request->name;
+                $user->phone = $request->phone;
+                $user->image = $url;
+                $user->save();
+                return redirect()->route('admin.profile')->with('notification', 'Changes successfully.');
+            }
+        }
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->save();
+        return redirect()->route('admin.profile')->with('notification', 'Changes successfully.');
     }
 
 }

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('favourite', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('magazine_id');
+            $table->unsignedBigInteger('academicYear_id');
             $table->integer('status')->default(0);
 
             // Define foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('magazine_id')->references('id')->on('magazine');
+            $table->foreign('academicYear_id')->references('id')->on('academicYear');
             $table->timestamps();
         });
     }

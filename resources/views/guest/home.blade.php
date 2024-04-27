@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -29,7 +32,7 @@
         <div class="sidebar">
             <a href="{{ route('admin.home') }}" class="active">
                 <span class="material-icons" >grid_view</span>
-                <h3>Magazine</h3>
+                <h3>Academic Year</h3>
             </a>
             {{--            <a href="{{ route('admin.student') }}" class="active">--}}
             {{--                <span class="material-icons">person</span>--}}
@@ -61,19 +64,19 @@
             <div class="row">
                 <div class="col-12">
                     <div class="heading">
-                        <h2>Magazines</h2>
+                        <h2>Academic Year</h2>
                     </div>
                 </div>
                 @csrf
-                @foreach($magazine as $info)
+                @foreach($academicYear as $info)
                     <div class="featured-box">
                         <div class="feature-card">
                             <a href="{{ url('/guest/contributions?id=' . $info->id) }}" ><i class="far fa-link"></i></a>
-                            <img src="{{ asset( $info->magazine_image ) }}">
+                            <img src="{{ asset( $info->image ) }}">
                         </div>
                         <div class="content">
-                            <h3>{{ $info->magazine_name }}</h3>
-                            <p>{{ $info->magazine_detail }}</p>
+                            <h3>{{ $info->name }}</h3>
+                            <p>{{ $info->detail }}</p>
                             <ol>
                                 <li>{{ $info->publish_date }}</li>
                                 <li>{{ $info->deadline }}</li>
@@ -96,5 +99,6 @@
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
 <script src="{{ asset('/js/cancel.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
 </body>
 </html>

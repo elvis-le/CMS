@@ -14,9 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('academicYear_id');
+            $table->unsignedBigInteger('faculty_id');
             $table->string('title');
             $table->string('content', 5000);
-            $table->string('backgroundImage');
+            $table->string('backgroundImage')->nullable();
             $table->dateTime('submission_date');
             $table->enum('condition', ['pending', 'approved', 'rejected'])->default('pending');
             $table->json('location');
@@ -27,6 +28,7 @@ return new class extends Migration {
             // Define foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('academicYear_id')->references('id')->on('academicYear');
+            $table->foreign('faculty_id')->references('id')->on('faculties');
 
             // Add timestamps for created_at and updated_at
             $table->timestamps();

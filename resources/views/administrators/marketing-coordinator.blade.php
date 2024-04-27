@@ -12,9 +12,12 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('/css/style-dashboard.css') }}">
 </head>
 <body>
+<div id="error-message" style="display: none;" data-error="{{ session('error') }}"></div>
 <div class="container">
     <aside>
         <div class="top">
@@ -32,16 +35,28 @@
                 <h3>Dashboard</h3>
             </a>
             <a href="{{ route('admin.student') }}">
-                <span class="material-icons">person</span>
+                <span class="material-symbols-outlined">group</span>
                 <h3>Student</h3>
             </a>
+            <a href="{{ route('admin.guest') }}">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <h3>Guest</h3>
+            </a>
             <a href="{{ route('admin.mc') }}" class="active">
-                <span class="material-icons">receipt_long</span>
+                <span class="material-symbols-outlined">groups</span>
                 <h3>Marketing Coordinator</h3>
             </a>
             <a href="{{ route('admin.academic') }}">
-                <span class="material-icons">insights</span>
+                <span class="material-symbols-outlined">calendar_month</span>
                 <h3>Academic year</h3>
+            </a>
+            <a href="{{ route('admin.faculty') }}">
+                <span class="material-symbols-outlined">subject</span>
+                <h3>Faculty</h3>
+            </a>
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">stacks</span>
+                <h3>Profile</h3>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -125,7 +140,6 @@
 
 
 </div>
-<script src="{{ asset('/js/order.js') }}"></script>
 <script src="{{ asset('/js/index.js') }}"></script>
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('/js/popper.min.js') }}"></script>
@@ -134,5 +148,7 @@
 <script src="{{ asset('/js/owl.carousel.js') }}"></script>
 <script src="{{ asset('/js/script.js') }}"></script>
 <script src="{{ asset('/js/dropdown.js') }}"></script>
+<script src="{{ asset('/js/error.js') }}"></script>
+<script src="{{ asset('/js/search-bar.js') }}"></script>
 </body>
 </html>

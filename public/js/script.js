@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const iframe = document.getElementById('file-iframe');
     const fileContainer = document.querySelector('.file-contribution-wrapper');
 
-    fileLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
+    fileLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
             event.preventDefault();
 
             const src = this.getAttribute('data-src');
@@ -120,37 +120,66 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('contextmenu', function(event) {
+document.addEventListener('contextmenu', function (event) {
     if (event.target.id === 'image-contribution-click') {
         event.preventDefault();
     }
 });
 
-document.addEventListener('contextmenu', function(event) {
+document.addEventListener('contextmenu', function (event) {
     if (event.target.id === 'iframe-contribution-click') {
         event.preventDefault();
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("approved-btn").addEventListener("click", function() {
-        document.getElementById("contribution-form").action = "/marketing-coordinator/approved";
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("approved-btn").addEventListener("click", function () {
+        var route = this.getAttribute("data-route");
+        document.getElementById("contribution-form").action = route;
         document.getElementById("contribution-form").submit();
     });
 
-    document.getElementById("rejected-btn").addEventListener("click", function() {
-        document.getElementById("contribution-form").action = "/marketing-coordinator/rejected";
+    document.getElementById("rejected-btn").addEventListener("click", function () {
+        var route = this.getAttribute("data-route");
+        document.getElementById("contribution-form").action = route;
+        document.getElementById("contribution-form").submit();
+    });
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("cancel-btn").addEventListener("click", function () {
+        var route = this.getAttribute("data-route");
+        document.getElementById("contribution-form").action = route;
         document.getElementById("contribution-form").submit();
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("allow-btn").addEventListener("click", function () {
+        var route = this.getAttribute("data-route");
+        document.getElementById("contribution-form").action = route;
+        document.getElementById("contribution-form").submit();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("un-allow-btn").addEventListener("click", function () {
+        var route = this.getAttribute("data-route");
+        document.getElementById("contribution-form").action = route;
+        document.getElementById("contribution-form").submit();
+    });
+});
+
+
 $(document).ready(function () {
     $('.word-contribution').click(function () {
         var fileType = $(this).data('type');
-        var divElement = $('<div class="file-upload-wrap"></div>')
-        var inputElement = $('<input accept=".docx,.doc" class="file-upload" type="file" name="file[{{ $loop->index }}]" multiple>');
+        var divElement = $('<div class="file-upload-wrap" id="docx-contribution"></div>')
+        var inputElement = $('<input accept=".docx,.doc" class="file-upload" type="file" name="file[]" multiple>');
         var spanElement = $('<span class="file-name"></span>');
-        var iconElement = $('<span class="file-icon"><img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/microsoft-word-logo.png"></span>');var buttonElement = $('<button class="delete-contribution">' +
+        var iconElement = $('<span class="file-icon"><img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/microsoft-word-logo.png"></span>');
+        var buttonElement = $('<button class="delete-contribution">' +
             '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
             '</button>');
         inputElement.change(function (e) {
@@ -168,7 +197,7 @@ $(document).ready(function () {
         inputElement.trigger('click');
     });
 
-    $('.image-contribution').click(function () {
+    $('.img-contribution').click(function () {
         var fileType = $(this).data('type');
         var divElement = $('<div class="file-upload-wrap"></div>')
         var inputElement = $('<input accept=".jpg,.jpeg,.png,.gif" class="file-upload" type="file" name="file[{{ $loop->index }}]" multiple>');
@@ -194,8 +223,8 @@ $(document).ready(function () {
 
     $('.pdf-contribution').click(function () {
         var fileType = $(this).data('type');
-        var divElement = $('<div class="file-upload-wrap"></div>')
-        var inputElement = $('<input accept=".pdf" class="file-upload" type="file" name="file[{{ $loop->index }}]" multiple>');
+        var divElement = $('<div class="file-upload-wrap" id="pdf-contribution"></div>')
+        var inputElement = $('<input accept=".pdf" class="file-upload" type="file" name="file[]" multiple>');
         var spanElement = $('<span class="file-name"></span>');
         var iconElement = $('<span class="file-icon"><img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/unnamed.png"></span>');
         var buttonElement = $('<button class="delete-contribution">' +
@@ -227,10 +256,11 @@ $(document).ready(function () {
         var divElement = $('<div class="edit-body-contribution"></div>')
         var inputElement = $('<input accept=".docx,.doc" class="file-upload" type="file" name="file[]" multiple>');
         var spanElement = $('<a class="file-name"></a>');
-        var iconElement = $('<span class="file-icon"><img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/microsoft-word-logo.png"></span>');var
+        var iconElement = $('<span class="file-icon"><img src="https://guxdryphbnffhexbtcvn.supabase.co/storage/v1/object/public/magazine-contribution-bucket/microsoft-word-logo.png"></span>');
+        var
             buttonElement = $('<button type="button" class="delete-contribution">' +
-            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
-            '</button>');
+                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>' +
+                '</button>');
         inputElement.change(function (e) {
             const [file] = e.target.files;
             if (file) {
@@ -246,7 +276,7 @@ $(document).ready(function () {
         inputElement.trigger('click');
     });
 
-    $('.image-contribution-file').click(function () {
+    $('.img-contribution-file').click(function () {
         var fileType = $(this).data('type');
         var divElement = $('<div class="edit-body-contribution"></div>')
         var inputElement = $('<input accept=".jpg,.jpeg,.png,.gif" class="file-upload" type="file" name="file[]" multiple>');
@@ -300,31 +330,19 @@ $(document).ready(function () {
 });
 
 
-
-document.getElementById('edit-btn').addEventListener('click', function() {
+document.getElementById('edit-btn').addEventListener('click', function () {
 
     document.getElementById('editContribution').style.display = 'block';
 });
-document.getElementById('close-edit-contribution').addEventListener('click', function() {
+document.getElementById('close-edit-contribution').addEventListener('click', function () {
 
     document.getElementById('editContribution').style.display = 'none';
 });
 
-document.getElementById('cancel-edit-contribution').addEventListener('click', function() {
+document.getElementById('cancel-edit-contribution').addEventListener('click', function () {
 
     document.getElementById('editContribution').style.display = 'none';
 });
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("submit").addEventListener("click", function(event) {
-        var checkboxChecked = document.getElementById("contribution-checkbox").checked;
-        if (!checkboxChecked) {
-            event.preventDefault();
-            alert("Please accept the terms and conditions before submitting.");
-        }
-    });
-});
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -366,6 +384,10 @@ function updateDate() {
     // Update the date display in the HTML element with id="currentDate"
     document.getElementById("currentDate").textContent = formattedDate;
 }
+
+
+
+
 
 updateDate();
 setInterval(updateDate, 86400000);
